@@ -1,0 +1,25 @@
+Signal Operations:
+The addition of signals follows principles similar to traditional mathematics. For two continuous-time signals x1(t) and x2(t), their addition is expressed as:
+y(t) = x1(t) + x2(t)
+
+For discrete-time signals x1[n] and x2[n]:
+y[n] = x1[n] + x2[n]
+
+Subtraction operates similarly:
+y(t) = x1(t) - x2(t) (continuous-time)
+y[n] = x1[n] - x2[n] (discrete-time)
+
+Time Shifting Operations:
+Time shifting alters the temporal positioning of a signal without affecting its amplitude characteristics.
+
+Time-Delayed Signals: Shifted to the right of the origin:
+y[n] = x[n - k]
+This signal arrives later than the original signal.
+
+Time-Advanced Signals: Shifted to the left of the origin:
+y[n] = x[n + k]
+This signal arrives earlier than the original signal.
+
+Time Reversal: Reflects the signal along its vertical axis:
+y(t) = x(-t) (continuous-time)
+y[n] = x[-n] (discrete-time)

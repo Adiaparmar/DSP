@@ -1,0 +1,29 @@
+Amplitude Modulation:
+Amplitude modulation (AM) is a conventional technique used to transmit message signals using a carrier wave. The amplitude of the high-frequency carrier wave is modified in accordance with the amplitude of the message signal.
+
+Carrier signal: Sc = Ac sin(2πfc t)
+Message signal: Sm = Am sin(2πfm t)
+where fm must be smaller than fc.
+
+When carrier amplitude is altered with respect to the message signal:
+Modulated Signal: (Ac + Am sin(2πfm t)) * sin(2πfc t)
+
+where:
+
+Ac = Carrier signal amplitude
+
+Am = Message signal amplitude
+
+fc = Carrier frequency
+
+fm = Message frequency
+
+s(t) = Modulated signal
+
+Single Sideband Suppressed Carrier (SSBSC): The process of suppressing one sideband along with the carrier and transmitting a single sideband. The modulated signal is:
+s(t) = (AmAc)/2 cos[2π(fc - fm)t] (Lower Sideband)
+s(t) = (AmAc)/2 cos[2π(fc + fm)t] (Upper Sideband)
+
+Double Sideband Suppressed Carrier (DSBSC): The carrier is suppressed and power is distributed to both sidebands:
+s(t) = AmAc cos(2πfm t) cos(2πfc t)
+

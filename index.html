@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DSP Text Files</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>DSP Text Files</h1>
-        <p>Click on a button to copy the content of the corresponding text file to clipboard.</p>
-        <div class="buttons-container">
-            <button class="copy-btn" data-file="addition and subtraction.txt">Addition and Subtraction</button>
-            <button class="copy-btn" data-file="convolution.txt">Convolution</button>
-            <button class="copy-btn" data-file="linearity.txt">Linearity</button>
-            <button class="copy-btn" data-file="modulation.txt">Modulation</button>
-            <button class="copy-btn" data-file="random waves.txt">Random Waves</button>
-            <button class="copy-btn" data-file="shifting and scaling.txt">Shifting and Scaling</button>
-            <button class="copy-btn" data-file="time invariance.txt">Time Invariance</button>
-            <button class="copy-btn" data-file="unit impulse, ramp and step.txt">Unit Impulse, Ramp and Step</button>
-        </div>
-        <div id="status-message"></div>
+      <h1>DSP Text Files</h1>
+      <p>
+        Click on a button to copy the content of the corresponding text file to
+        clipboard.
+      </p>
+      <div class="buttons-container">
+        <button class="copy-btn" data-file="addition and subtraction.txt">
+          Addition and Subtraction
+        </button>
+        <button class="copy-btn" data-file="convolution.txt">
+          Convolution
+        </button>
+        <button class="copy-btn" data-file="linearity.txt">Linearity</button>
+        <button class="copy-btn" data-file="modulation.txt">Modulation</button>
+        <button class="copy-btn" data-file="random waves.txt">
+          Random Waves
+        </button>
+        <button class="copy-btn" data-file="shifting and scaling.txt">
+          Shifting and Scaling
+        </button>
+        <button class="copy-btn" data-file="time invariance.txt">
+          Time Invariance
+        </button>
+        <button class="copy-btn" data-file="unit impulse, ramp and step.txt">
+          Unit Impulse, Ramp and Step
+        </button>
+      </div>
+
+      <h1>Theory</h1>
+      <div class="buttons-container">
+        <button class="copy-btn" data-file="random function theory.txt">
+          Random Function Theory
+        </button>
+        <button class="copy-btn" data-file="operation.txt">
+          Operations Theory
+        </button>
+        <button class="copy-btn" data-file="am theory.txt">AM Theory</button>
+      </div>
+      <div id="status-message"></div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
