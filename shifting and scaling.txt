@@ -1,0 +1,107 @@
+clc;
+clear;
+close;
+
+x = input('Enter the input sequence:=');
+m = length(x);
+lx = input('Enter the starting point of original signal:=');
+hx = lx + m - 1;
+n = lx:1:hx;
+
+// Plot original sequence
+subplot(3, 1, 1);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n, x);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Original sequence');
+
+// Plot delayed sequence
+d = input('Enter the delay:=');
+n = lx + d:1:hx + d;
+subplot(3, 1, 2);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n, x);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Delayed Sequence');
+
+// Plot advanced sequence
+a_val = input('Enter the advance:=');
+n = lx - a_val:1:hx - a_val;
+subplot(3, 1, 3);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n, x);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Advanced Sequence');
+
+
+
+// Program to demonstrate amplitude and time scaling of a signal
+clc;
+clear;
+x = input('Enter input sequence:=');
+m = length(x);
+lx = input('Enter starting point of original sequence:=');
+hx = lx + m - 1;
+n = lx:1:hx;
+
+// Plot original sequence
+subplot(2, 2, 1);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n, x);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Original sequence');
+
+// Amplitude Scaling
+a_factor = input('Amplitude Scaling factor:=');
+y = a_factor * x;
+subplot(2, 2, 2);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n, y);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Amplitude scaled sequence');
+
+// Time Scaling - Compression
+C = input('Enter compression factor - time scaling factor:');
+n_compressed = lx/C : 1/C : hx/C;
+subplot(2, 2, 3);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n_compressed, x);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Compressed sequence');
+
+// Time Scaling - Expansion
+d = input('Time scaling factor:');
+n_expanded = lx*d : d : hx*d;
+subplot(2, 2, 4);
+a = gca();
+a.x_location = "origin";
+a.y_location = "origin";
+a.data_bounds = [-10, 0; 10, 10];
+plot2d3('gnn', n_expanded, x);
+xlabel('n ===>');
+ylabel('Amplitude --->');
+title('Extended sequence');

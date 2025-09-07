@@ -1,0 +1,101 @@
+clc;
+clear;
+
+// Discrete time signals
+n = input('Enter discrete time values n=');
+
+// For discrete time unit impulse signal
+for i = 1:length(n)
+    if n(i) == 0 then
+        y(i) = 1;
+    else
+        y(i) = 0;
+    end
+end
+
+subplot(2, 3, 1);
+plot2d3(n, y);
+xlabel("Time");
+ylabel("Amplitude");
+title("Discrete Unit Impulse");
+
+// For discrete time unit step signal
+for i = 1:length(n)
+    if n(i) >= 0 then
+        u(i) = 1;
+    else
+        u(i) = 0;
+    end
+end
+
+subplot(2, 3, 2);
+plot2d3(n, u);
+xlabel("Time");
+ylabel("Amplitude");
+title("Discrete Unit Step");
+
+// For discrete time unit ramp signal
+for i = 1:length(n)
+    if n(i) >= 0 then
+        r(i) = n(i);
+    else
+        r(i) = 0;
+    end
+end
+
+subplot(2, 3, 3);
+plot2d3(n, r);
+xlabel("Time");
+ylabel("Amplitude");
+title("Discrete Unit Ramp");
+
+// Continuous time signals
+t = input('Enter continuous time values t=');
+
+// For continuous time unit impulse signal (approximation)
+yc = zeros(1, length(t));
+for i = 1:length(t)
+    if abs(t(i)) < 0.1 then  // Small tolerance for continuous approximation
+        yc(i) = 1;
+    else
+        yc(i) = 0;
+    end
+end
+
+subplot(2, 3, 4);
+plot(t, yc);
+xlabel("Time");
+ylabel("Amplitude");
+title("Continuous Unit Impulse (Approx)");
+
+// For continuous time unit step signal
+uc = zeros(1, length(t));
+for i = 1:length(t)
+    if t(i) >= 0 then
+        uc(i) = 1;
+    else
+        uc(i) = 0;
+    end
+end
+
+subplot(2, 3, 5);
+plot(t, uc);
+xlabel("Time");
+ylabel("Amplitude");
+title("Continuous Unit Step");
+
+// For continuous time unit ramp signal
+rc = zeros(1, length(t));
+for i = 1:length(t)
+    if t(i) >= 0 then
+        rc(i) = t(i);
+    else
+        rc(i) = 0;
+    end
+end
+
+subplot(2, 3, 6);
+plot(t, rc);
+xlabel("Time");
+ylabel("Amplitude");
+title("Continuous Unit Ramp");

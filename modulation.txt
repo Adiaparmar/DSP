@@ -1,0 +1,28 @@
+close;
+ac = 1;
+fc = 1000;
+fm = 100;
+mu = 0.5;
+fs = 10000;
+t = 0:1/fs:0.005;
+
+m = cos(2*%pi*fm*t);
+s = (ac*(1+mu*m)).*cos(2*%pi*fc*t);
+
+f = [fc-fm, fc, fc+fm];
+a = [mu*ac/2, ac, mu*ac/2];
+
+subplot(2, 1, 1);
+plot(t, s);
+xlabel('time');
+ylabel('Amplitude');
+title('Amplitude-modulated signal');
+
+subplot(2, 1, 2);
+b = gca();
+b.x_location = "origin";
+b.y_location = "origin";
+plot2d3(f, a);
+xlabel('Frequency');
+ylabel('Amplitude');
+title('AM spectrum');

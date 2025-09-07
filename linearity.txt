@@ -1,0 +1,85 @@
+// To check whether the given discrete system is a Linear System (or) Non-Linear System
+// Given discrete system y(t) = t * x(t)
+clear;
+clc;
+
+x1 = [1, 1, 1, 1];
+x2 = [2, 2, 2, 2];
+a = 1;
+b = 1;
+
+for t = 1:length(x1)
+    x3(t) = a * x1(t) + b * x2(t);
+end
+
+for t = 1:length(x1)
+    y1(t) = t * x1(t);
+    y2(t) = t * x2(t);
+    y3(t) = t * x3(t);
+end
+
+for t = 1:length(y1)
+    z(t) = a * y1(t) + b * y2(t);
+end
+
+count = 0;
+for n = 1:length(y3)
+    if y3(n) == z(n) then
+        count = count + 1;
+    end
+end
+
+if count == length(y3) then
+    disp('Since it satisfies the superposition principle');
+    disp('The given system is a Linear system');
+    disp('y3 = ', y3);
+    disp('z = ', z);
+else
+    disp('Since it does not satisfy the superposition principle');
+    disp('The given system is a Non-Linear system');
+    disp('y3 = ', y3);
+    disp('z = ', z);
+end
+
+// To check whether the given discrete system is a Linear System (or) Non-Linear System
+// Given discrete system y[n] = 2*x[n] + 3
+clear;
+clc;
+
+x1 = [1, 1, 1, 1];
+x2 = [2, 2, 2, 2];
+a = 1;
+b = 1;
+
+for n = 1:length(x1)
+    x3(n) = a * x1(n) + b * x2(n);
+end
+
+for n = 1:length(x1)
+    y1(n) = 2 * x1(n) + 3;
+    y2(n) = 2 * x2(n) + 3;
+    y3(n) = 2 * x3(n) + 3;
+end
+
+for n = 1:length(y1)
+    z(n) = a * y1(n) + b * y2(n);
+end
+
+count = 0;
+for n = 1:length(y3)
+    if y3(n) == z(n) then
+        count = count + 1;
+    end
+end
+
+if count == length(y3) then
+    disp('Since it satisfies the superposition principle');
+    disp('The given system is a Linear system');
+    disp('y3 = ', y3);
+    disp('z = ', z);
+else
+    disp('Since it does not satisfy the superposition principle');
+    disp('The given system is a Non-Linear system');
+    disp('y3 = ', y3);
+    disp('z = ', z);
+end
