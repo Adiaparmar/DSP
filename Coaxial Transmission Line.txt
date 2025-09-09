@@ -1,0 +1,41 @@
+Theory: Coaxial Transmission Line
+
+A coaxial transmission line consists of two round conductors in which one surrounds the other, with the two separated by a continuous solid dielectric as shown below in Fig.2.1.
+
+Characteristic impedance is also known as natural impedance, and it refers to the equivalent resistance of a transmission line if it were infinitely long, owing to distributed capacitance and inductance as the voltage and current "waves" propagate along its length at a propagation velocity equal to some large fraction of light speed.
+
+A transmission line's characteristic impedance (Z0) increases as the conductor spacing increases. If the conductors are moved away from each other, the distributed capacitance will decrease (greater spacing between capacitor "plates"), and the distributed inductance will increase (less cancellation of the two opposing magnetic fields). Less parallel capacitance and more series inductance results in a smaller current drawn by the line for any given voltage. Conversely, bringing the two conductors closer together increases the parallel capacitance and decreases the series inductance. Both changes result in a larger current drawn for a given applied voltage, equating to a lesser impedance.
+
+The characteristic impedance of a coaxial transmission line is given by:
+Zo = (138 / √k) * log(d1 / d2)
+
+Where:
+Zo = Characteristic impedance of line
+d1 = Inside diameter of outer conductor
+d2 = Outside diameter of inner conductor
+k = Relative permittivity of insulation between conductors
+
+Fig 2.2: Inside and outside diameter and characteristics impedance
+
+The Reflection Coefficient Transformation:
+The load at the end of some length of a transmission line (with characteristic impedance Zo) can be specified in terms of its impedance ZL or its reflection coefficient ΓL.
+
+When a transmission line is terminated with impedance, ZL, that is not equal to the characteristic impedance of the transmission line, Zo, not all of the incident power is absorbed by the termination. Part of the power is reflected back so that phase addition and subtraction of the incident and reflected waves creates a voltage standing wave pattern on the transmission line. The ratio of the maximum to minimum voltage is known as the Voltage Standing Wave Ratio (VSWR) and successive maxima and minima are spaced by 180° (lambda/2).
+
+ΓL = (ZL - Z0) / (ZL + Z0) OR ZL = Z0 * (1 + ΓL) / (1 - ΓL)
+
+VSWR = Emax / Emin = (Ei + Er) / (Ei - Er)
+
+Where:
+Emax = maximum voltage on standing wave
+Emin = minimum voltage on standing wave
+Ei = incident voltage wave amplitude
+Er = reflected voltage wave amplitude
+
+If the equation for VSWR is solved for the reflection coefficient, it is found that:
+
+Reflection Coefficient:
+|Γ| = (VSWR - 1) / (VSWR + 1)
+
+HFSS Design:
+We will be designing a coaxial transmission line having inner and outer conductor radius to be 0.73 mm and 4.7 mm and the overall outer radius to be 6.2 mm. The length of the transmission line will be 20 mm. After that, the dielectric constants will be changed, and effects will be analyzed on characteristic impedance and reflection coefficient.

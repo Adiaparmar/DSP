@@ -1,0 +1,52 @@
+Theory: Circular Waveguide
+
+A circular waveguide consists of a hollow metallic cylinder with an inner radius R as shown in Fig.1.13. In the inner air-filled volume of the cylinder, electromagnetic waves can propagate above mode-specific cut-off frequencies fc,mn. Solutions of Maxwell's equations can be found using cylindrical coordinates and involve Bessel functions. As in the case of a rectangular waveguide, the solutions can be divided into TE and TM modes. The different modes are identified by integer numbers m and n.
+
+Fig.1.13: Circular Waveguide
+
+The wave mode with the lowest cut-off frequency (fundamental mode) is TE11. The electric field distribution in a cross-section area is shown in Fig.1.14. Since the cross-section is a circle, there is no preferential direction for the orientation of the electric field. We can see a vertical field orientation and a horizontal field orientation in Fig.1.14. In practical operation the orientation depends on the excitation of the mode. We can use orthogonal polarized waves of the fundamental wave mode to transmit two independent data streams simultaneously. A circular waveguide component is as shown in Fig.1.20.
+
+Cut off frequency:
+Similarly, as in the case of rectangular waveguides, propagation in circular waveguides is determined by a cutoff frequency. The cutoff frequency is unique for a particular waveguide mode that is supposed to be propagating in a waveguide of a given diameter and determines the lower frequency of the waveguide’s operating frequency range. The cutoff frequency for a circular waveguide is calculated using the following formula:
+
+fc,mn = (v * βc,mn) / (2π)
+
+where:
+v stands for the wave velocity in a medium filling the waveguide,
+βc,mn is the cutoff phase constant which is calculated according to the formulae given in Table 1.
+
+Table 1: Cutoff phase constant formulae for circular waveguide modes.
+
+| TE (H) mode              | TM (E) mode              |
+|--------------------------|--------------------------|
+| (Transverse Electric)    | (Transverse Magnetic)    |
+| βc,mn = χ'_{m,n} / a     | βc,mn = χ_{m,n} / a      |
+
+where:
+χ_{m,n} – n-th root of m-th Bessel function,
+χ'_{m,n} – n-th root of the derivative of the m-th Bessel function,
+a – radius of the circular waveguide.
+
+---
+
+Department of ECE
+Page 32
+
+---
+
+5EC4-21 RF Simulation Lab
+
+Now, for TE11 mode if we take the radius of waveguide a = 10 cm, then the cut off frequency comes out to be 879 MHz as per the below calculations. Values of Bessel functions are calculated from corresponding tables.
+
+fc,TE_{m,n}} = (c / (2π)) * (χ'_{m,n} / a)
+=> fc,TE_{11}} = (c / (2π)) * (χ'_{11} / a)
+
+χ'_{11} = 1.841
+fc,TE_{11}} = (3e8 / (2π)) * (1.841 / 0.1) = 879 MHz
+
+---
+
+Waveguide design on HFSS:
+a = radius = 10 cm
+d = length = length of Waveguide is any multiple of wavelength for TE11 mode, here we are taking it equal to wavelength i.e about 34 cm
+Mode = TE11
