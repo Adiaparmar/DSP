@@ -1,0 +1,145 @@
+**THEORY:**
+
+## **What is Z-Transform?**
+
+The Z-transform is a powerful mathematical tool used in digital signal processing to:
+- **Convert discrete time signals** from time domain to Z-domain
+- **Analyze digital systems** and their behavior
+- **Find frequency response** of discrete signals and systems
+- **Study system stability** and performance
+
+---
+
+## **Relationship to Other Transforms:**
+
+**Z-Transform vs DTFT:**
+- **DTFT (Discrete Time Fourier Transform)** works only for stable signals
+- **Z-Transform** is a generalized version of DTFT
+- **Key difference:** Z-transform multiplies the signal by a converging factor (r^(-n))
+- **Advantage:** Makes unstable signals analyzable by choosing appropriate convergence region
+
+**Mathematical Relationship:**
+DTFT: X(e^(jω)) = Σ[n=-∞ to ∞] x(n) × e^(-jωn)
+Z-Transform: X(z) = Σ[n=-∞ to ∞] x(n) × z^(-n)
+
+When z = e^(jω), Z-transform becomes DTFT.
+
+---
+
+## **Z-Transform Definition (Forward Transform):**
+
+**Formula:**
+X(z) = Σ[n=-∞ to ∞] x(n) × z^(-n)
+
+**Breaking down the components:**
+- **x(n)** = discrete time signal (input samples)
+- **X(z)** = Z-transform of x(n) (output function)
+- **z** = complex variable in Z-domain
+- **n** = discrete time index (..., -2, -1, 0, 1, 2, ...)
+- **z^(-n)** = basis function (like e^(-jωn) in DTFT)
+- **Σ** = summation from negative infinity to positive infinity
+
+**What this formula does:**
+1. Takes each sample x(n) of your discrete signal
+2. Multiplies it by z^(-n)
+3. Sums all these products from n = -∞ to +∞
+4. Results in X(z), which represents the signal in Z-domain
+
+---
+
+## **Inverse Z-Transform Definition:**
+
+**Formula:**
+x(n) = (1/2πj) ∮ X(z) × z^(n-1) dz
+
+**Breaking down the components:**
+- **x(n)** = original discrete time signal (what we want to recover)
+- **X(z)** = Z-transform that we want to invert
+- **z^(n-1)** = basis function for inverse transform
+- **∮** = contour integral (integration around closed path in complex plane)
+- **1/2πj** = normalization factor
+- **j** = imaginary unit (√-1)
+- **dz** = differential element in complex z-plane
+
+**What this formula does:**
+1. Integrates X(z) × z^(n-1) around a closed contour in the Z-plane
+2. The contour must be chosen to enclose the Region of Convergence (ROC)
+3. Results in the original time-domain signal x(n)
+
+---
+
+## **Z-Domain (Complex Frequency Plane):**
+
+**Structure of z:**
+z = r × e^(jω) = r × (cos(ω) + j×sin(ω))
+
+**Components:**
+- **r** = magnitude (distance from origin)
+- **ω** = angle (frequency component)
+- **Real part:** r × cos(ω)
+- **Imaginary part:** r × sin(ω)
+
+**Special Cases:**
+- **Unit Circle (r = 1):** z = e^(jω) → gives frequency response
+- **Inside Unit Circle (r < 1):** represents stable/decaying signals
+- **Outside Unit Circle (r > 1):** represents unstable/growing signals
+
+---
+
+## **Why Z-Transform is Important:**
+
+### **Advantages over time-domain analysis:**
+1. **Converts difference equations** into algebraic equations
+2. **System analysis** becomes multiplication instead of convolution
+3. **Stability analysis** can be done by examining pole locations
+4. **Frequency response** easily obtained by evaluating on unit circle
+
+### **Practical applications:**
+- **Digital filter design** and analysis
+- **Control system** stability analysis
+- **Signal processing** algorithm development
+- **System identification** and modeling
+
+---
+
+## **MATLAB Implementation:**
+
+### **Forward Z-Transform:**
+```matlab
+% Convert time domain signal to Z-domain
+syms n z
+x_n = [1, 2, 3, 4];  % example discrete signal
+X_z = ztrans(x_n);   % compute Z-transform
+```
+
+### **Inverse Z-Transform:**
+```matlab
+% Convert Z-domain back to time domain
+syms z n
+X_z = z/(z-0.5);     % example Z-transform
+x_n = iztrans(X_z);  % compute inverse Z-transform
+```
+
+### **Functions:**
+- **ztrans()** = computes forward Z-transform
+- **iztrans()** = computes inverse Z-transform
+- Both functions handle symbolic mathematics automatically
+
+---
+
+## **Key Concepts Summary:**
+
+**Forward Transform:** Time Domain → Z-Domain
+- Input: discrete signal x(n)
+- Output: complex function X(z)
+- Purpose: analysis, system design
+
+**Inverse Transform:** Z-Domain → Time Domain
+- Input: complex function X(z)
+- Output: discrete signal x(n)
+- Purpose: signal recovery, system response
+
+**Region of Convergence (ROC):**
+- Defines where X(z) converges (doesn't blow up to infinity)
+- Critical for determining which inverse transform to use
+- Different ROCs can give different time-domain signals for same X(z)

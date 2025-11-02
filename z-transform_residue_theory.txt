@@ -1,0 +1,128 @@
+**THEORY:**
+## **What is Z-Transform?**
+The Z-transform is a mathematical tool used to:
+- **Convert discrete time signals** from time domain to Z-domain
+- **Analyze digital filters** and their frequency response
+- **Study system stability** and behavior
+- **Solve difference equations** more easily
+
+Think of it as the discrete-time equivalent of the Laplace transform for continuous signals.
+
+---
+
+## **Z-Transform Definition:**
+**Forward Z-Transform:**
+For a discrete signal x(n), the Z-transform X(z) is:
+
+X(z) = Σ[n=-∞ to +∞] x(n) × z^(-n)
+
+**Breaking it down:**
+- x(n) = input signal at sample n
+- z = complex variable (z = re^(jω))
+- n = sample index (..., -2, -1, 0, 1, 2, ...)
+- Σ = summation symbol
+
+**What this means:**
+- Take each sample x(n) of your signal
+- Multiply it by z^(-n)
+- Add up all these products from n = -∞ to +∞
+
+---
+
+## **Inverse Z-Transform Definition:**
+**Formula:**
+x(n) = (1/2πj) ∮ X(z) × z^(n-1) dz
+
+**Breaking it down:**
+- x(n) = original time domain signal we want to recover
+- X(z) = Z-transform we want to invert
+- ∮ = contour integral (integration around a closed path)
+- j = imaginary unit (√-1)
+- z^(n-1) = weighting factor
+
+**What this means:**
+- Integration is performed around a closed contour in the complex z-plane
+- The contour must enclose all poles of X(z)z^(n-1)
+- This recovers the original discrete-time signal x(n)
+
+---
+
+## **Cauchy's Residue Theorem (The Smart Way):**
+Instead of doing complex contour integration, we can use residue theorem:
+
+**Main Formula:**
+x[n] = Σ[all poles inside contour] Residue[X(z)z^(n-1), pole_k]
+
+**In mathematical notation:**
+x[n] = Σ[k] Res(X(z)z^(n-1), λk, mk)
+
+**What this means:**
+- Find all the **poles** (points where X(z) becomes infinite) inside the contour
+- Calculate the **residue** at each pole
+- Add up all the residues
+
+---
+
+## **How to Calculate Residues:**
+### **For a pole λk with multiplicity mk:**
+**Residue Formula:**
+Res(F(z), λk, mk) = (1/(mk-1)!) × [d^(mk-1)/dz^(mk-1)][(z-λk)^mk × F(z)]|z=λk
+
+**Breaking it down:**
+- F(z) = X(z) × z^(n-1)
+- λk = the k-th pole location
+- mk = pole multiplicity (how many times the pole repeats)
+- d^(mk-1)/dz^(mk-1) = take the (mk-1)th derivative
+- |z=λk = evaluate the result at z = λk
+- (mk-1)! = factorial of (mk-1)
+
+### **Special Cases:**
+**Case 1: Simple Pole (mk = 1)**
+Res(F(z), λk, 1) = [(z-λk) × F(z)]|z=λk
+
+**Case 2: Double Pole (mk = 2)**
+Res(F(z), λk, 2) = d/dz[(z-λk)² × F(z)]|z=λk
+
+**Case 3: Triple Pole (mk = 3)**
+Res(F(z), λk, 3) = (1/2!) × d²/dz²[(z-λk)³ × F(z)]|z=λk
+
+---
+
+## **Step-by-Step Process:**
+### **To find inverse Z-transform using residues:**
+
+**Step 1:** Start with X(z) and form F(z) = X(z) × z^(n-1)
+
+**Step 2:** Find all poles of F(z)
+- Poles are values of z where F(z) becomes infinite
+- Usually found by setting denominator = 0
+
+**Step 3:** Determine multiplicity of each pole
+- Simple pole: appears once
+- Multiple pole: appears more than once
+
+**Step 4:** Calculate residue at each pole using appropriate formula
+
+**Step 5:** Sum all residues to get x[n]
+
+---
+
+## **Why Use Residue Theorem?**
+
+**Advantages:**
+- **Avoids complex integration:** No need to evaluate difficult contour integrals
+- **Uses algebraic operations:** Just derivatives and substitutions
+- **Systematic approach:** Clear step-by-step process
+- **Works for all cases:** Handles simple and multiple poles
+
+**Key Insight:**
+Cauchy's residue theorem converts a complex integration problem into a simpler differentiation and evaluation problem!
+
+---
+
+## **Practical Notes:**
+- **Region of Convergence (ROC)** determines which poles to include
+- **Causal signals:** Include poles inside unit circle
+- **Anti-causal signals:** Include poles outside unit circle
+- **Two-sided signals:** May need to split into causal and anti-causal parts
+- **Most practical systems** have simple poles, making calculations easier

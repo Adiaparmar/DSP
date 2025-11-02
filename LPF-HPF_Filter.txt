@@ -1,0 +1,36 @@
+fc_low = 100;
+fc_high = 3000;
+order = 1;
+
+wn_low = 2 * %pi * fc_low;
+wn_high = 2 * %pi * fc_high;
+
+f = logspace(1, 4, 1000);
+w = 2 * %pi * f;
+
+// LPF Transfer function
+num_lpf = wn_low^order; // numerator
+den_lpf = [1, wn_low^order]; // denominator
+[H_lpf, w] = freqs(num_lpf, den_lpf, w);
+
+// HPF Transfer function
+num_hpf = [1, 0]; // numerator
+den_hpf = [1, wn_high^order]; // denominator
+[H_hpf, w] = freqs(num_hpf, den_hpf, w);
+
+// Plot magnitude response of LPF
+figure(1)
+subplot(2,1,1)
+semilogx(f, 20 * log10(abs(H_lpf)), 'b', 'linewidth', 2);
+grid(1)
+xlabel('Frequency (Hz)');
+ylabel('Magnitude (dB)');
+title('Magnitude Response of Analog LPF');
+
+// Plot magnitude of HPF
+subplot(2,1,2)
+semilogx(f, 20 * log10(abs(H_hpf)), 'r', 'linewidth', 2);
+grid(1)
+xlabel('Frequency (Hz)');
+ylabel('Magnitude (dB)');
+title('Magnitude Response of Analog HPF');

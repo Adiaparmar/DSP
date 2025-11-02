@@ -1,0 +1,75 @@
+// Caption: Program to Compute the Cross-correlation of a Sequence
+// And verification of cross-correlation property
+clc;
+clear;
+close;
+x = input('Enter the First input Sequence: ');
+y = input('Enter the second input Sequence: ');
+mx = length(x);
+my = length(y);
+lx = input('Enter the lower index of first input sequence: ');
+ly = input('Enter the lower index of second input sequence: ');
+hx = lx + mx - 1;
+n = lx:1:hx;
+x_fold = x($:-1:1);
+y_fold = y($:-1:1);
+nx = lx + ly;
+ny = nx + mx + my - 2;
+r = nx:ny;
+Rxy = convol(x, y_fold);
+Ryx = convol(x_fold, y);
+disp(Rxy, 'Cross Correlation Rxy[n]: ');
+count = 1;
+subplot(2, 1, 1)
+plot2d3('gnn', n, x)
+xlabel('n===>')
+ylabel('Amplitude-->')
+title('Input Sequence x[n]')
+subplot(2, 1, 2)
+plot2d3('gnn', r, Rxy)
+xlabel('n===>')
+ylabel('Amplitude-->')
+title('Cross-correlation Sequence Rxy[n]')
+
+OUTPUT:
+Enter the First input Sequence: [1 2 1 1]
+Enter the second input Sequence: [1 1 2 1]
+Enter the lower index of first input sequence: 0
+Enter the lower index of second input sequence: 0
+
+Cross Correlation Rxy[n]: 
+1. 4. 6. 6. 5. 2. 1.
+
+PROGRAM FOR COMPUTING AUTOCORRELATION FUNCTION
+
+clc;
+clear;
+close;
+x = input('Enter the input Sequence: ');
+m = length(x);
+lx = input('Enter the lower index of input sequence: ');
+hx = lx + m - 1;
+n = lx:1:hx;
+x_fold = x($:-1:1);
+nx = lx + lx;
+nh = nx + m + m - 2;
+r = nx:nh;
+Rxx = convol(x, x_fold);
+disp(Rxx, 'Auto Correlation Rxx[n]: ');
+subplot(2, 1, 1)
+plot2d3('gnn', n, x)
+xlabel('n===>')
+ylabel('Amplitude-->')
+title('Input Sequence x[n]')
+subplot(2, 1, 2)
+plot2d3('gnn', r, Rxx)
+xlabel('n===>')
+ylabel('Amplitude-->')
+title('Auto-correlation Sequence Rxx[n]')
+
+OUTPUT:
+Enter the input Sequence: [2 -1 3 4 1]
+Enter the lower index of input sequence: 2
+
+Auto Correlation Rxx[n]: 
+2. 7. 5. 11. 31. 11. 5. 7. 2.

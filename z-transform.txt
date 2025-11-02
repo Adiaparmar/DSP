@@ -1,0 +1,27 @@
+clc;
+clear;
+close;
+x = [1,2,3,4];
+z = poly(0, "z");
+n = 0: length(x)-1;
+X = x .* z.^(-n);
+Xz = sum(X);
+disp("Z-transform of the signal:");
+disp(Xz);
+disp("ROC of signal: entire z-plane except 0");
+
+num = 9 + z + 6*z^2 + 3*z^3;
+den = z^3;
+[q, r] = pdiv(num, den);
+disp("Inverse z-transform:");
+disp(q);
+
+Result:
+
+Z-transform of the signal:
+   4 + 3z + 2z² + z³
+   ────────────────
+          z³
+
+Inverse z-transform:
+   9 + z + 6z²

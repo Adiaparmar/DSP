@@ -1,0 +1,75 @@
+**THEORY:** Analog filters are made up of resistors, capacitors, and op-amps to produce the required output. These are mainly of two types:
+
+---
+
+## 1. Butterworth Filter
+
+### Overview:
+Butterworth filters are causal in nature and come in various orders:
+- **Lower orders** = better performance in time domain (faster response)
+- **Higher orders** = better performance in frequency domain (sharper cutoff)
+
+### Characteristics:
+- Also called "maximally flat" filters
+- Have a monotonic (always decreasing) amplitude frequency response
+- Response is maximally flat at zero frequency (DC)
+- Amplitude decreases logarithmically as frequency increases
+
+---
+
+### **Butterworth Filter Formula:**
+
+**Magnitude Response:**
+|H(jΩ)| = 1 / √[1 + (Ω/Ωc)^(2N)]
+
+**Breaking down the formula:**
+- |H(jΩ)| = magnitude of frequency response at frequency Ω
+- Ω = input frequency (rad/sec)
+- Ωc = cutoff frequency (rad/sec)
+- N = filter order (1, 2, 3, 4, etc.)
+- j = imaginary unit (√-1)
+
+**Alternative way to write it:**
+|H(jΩ)| = 1 / [1 + (Ω/Ωc)^(2N)]^(1/2)
+
+---
+
+### **Key Parameters Explained:**
+
+**1. Cutoff Frequency (Ωc):**
+- The frequency where filter magnitude drops to 1/√2 times the DC gain
+- At DC (Ω=0): |H(j0)| = 1 (maximum gain)
+- At cutoff (Ω=Ωc): |H(jΩc)| = 1/√2 ≈ 0.707
+- This represents the -3dB point (half power point)
+
+**2. Filter Order (N):**
+- Determines how sharp the cutoff is
+- Higher N = sharper cutoff but more complex circuit
+- Roll-off rate = -20N dB/decade after cutoff frequency
+
+**Examples of different orders:**
+- N=1: |H(jΩ)| = 1/√[1 + (Ω/Ωc)²]           → -20 dB/decade rolloff
+- N=2: |H(jΩ)| = 1/√[1 + (Ω/Ωc)⁴]           → -40 dB/decade rolloff
+- N=3: |H(jΩ)| = 1/√[1 + (Ω/Ωc)⁶]           → -60 dB/decade rolloff
+
+---
+
+### **Behavior at Different Frequencies:**
+
+**At DC (Ω = 0):**
+|H(j0)| = 1/√[1 + 0] = 1 (unity gain)
+
+**At Cutoff (Ω = Ωc):**
+|H(jΩc)| = 1/√[1 + 1] = 1/√2 ≈ 0.707 (-3dB)
+
+**Far above cutoff (Ω >> Ωc):**
+|H(jΩ)| ≈ (Ωc/Ω)^N (decreases rapidly)
+
+---
+
+### **Practical Notes:**
+- Butterworth filters provide the flattest possible passband response
+- No ripples in passband (unlike Chebyshev filters)
+- Smooth transition from passband to stopband
+- Most commonly used filter type due to predictable behavior
+- Trade-off: gentler rolloff compared to other filter types with same order

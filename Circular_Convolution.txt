@@ -1,0 +1,23 @@
+clc;
+clear;
+close;
+
+x = [1,2,3,4];
+h = [4,3,2,1];
+n = max(length(x), length(h));
+x = [x, zeros(1, n - length(x))];
+h = [h, zeros(1, n - length(h))];
+y = zeros(1, n);
+
+for i = 1:n
+    h_shifted = circshift(h, [0, i-1]);
+    y(i) = sum(x .* h_shifted);
+end
+
+disp("Circular Convolution Sequence:");
+disp(y);
+
+
+Result:
+Circular Convolution Sequence:
+  20.    26.    28.    26.

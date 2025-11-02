@@ -1,0 +1,78 @@
+clc;
+close all;
+clear all;
+
+rp = input('Enter passband ripple: ');
+rs = input('Enter the stopband ripple: ');
+fp = input('Enter passband freq: ');
+fs = input('Enter stopband freq: ');
+f = input('Enter sampling freq: ');
+
+wp = 2 * fp / f;
+ws = 2 * fs / f;
+num = -20 * log10(sqrt(rp * rs)) - 13;
+dem = 14.6 * (fs - fp) / f;
+n = ceil(num / dem);
+n1 = n + 1;
+
+if (rem(n, 2) ~= 0)
+    n1 = n;
+    n = n - 1;
+end
+
+c = input('Enter your choice of window function 1. rectangular 2. triangular 3. kaiser: \n ');
+
+if (c == 1)
+    y = window('re', n1);
+    disp('Rectangular window filter response');
+end
+
+if (c == 2)
+    y = window('tr', n1);
+    disp('Triangular window filter response');
+end
+
+if (c == 3)
+    y = window('kr', n1);
+    disp('Kaiser window filter response');
+end
+
+// LPF
+b = fir1(n, wp, y);
+[h, o] = freqz(b, 1, 256);
+m = 20 * log10(abs(h));
+subplot(2, 2, 1);
+plot(o / %pi, m);
+title('LPF');
+ylabel('Gain in dB-->');
+xlabel('(a) Normalized frequency-->');
+
+// HPF
+b = fir1(n, wp, 'high', y);
+[h, o] = freqz(b, 1, 256);
+m = 20 * log10(abs(h));
+subplot(2, 2, 2);
+plot(o / %pi, m);
+title('HPF');
+ylabel('Gain in dB-->');
+xlabel('(b) Normalized frequency-->');
+OUTPUT:
+
+
+Enter passband ripple: 0.02
+Enter the stopband ripple: 0.01
+Enter passband freq: 1000
+Enter stopband freq: 1500
+Enter sampling freq: 10000
+Enter your choice of window function 1. rectangular 2. triangular 3. kaiser: 
+1
+Rectangular window filter response
+
+Enter passband ripple: 0.02
+Enter the stopband ripple: 0.01
+Enter passband freq: 1000
+Enter stopband freq: 1500
+Enter sampling freq: 10000
+Enter your choice of window function 1. rectangular 2. triangular 3. kaiser: 
+2
+Triangular window filter response

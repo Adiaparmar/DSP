@@ -1,0 +1,109 @@
+**THEORY:**
+A Fast Fourier Transform (FFT) is an efficient algorithm to compute the Discrete Fourier Transform (DFT) and its inverse. FFTs are extremely important in many applications including digital signal processing, solving partial differential equations, and algorithms for quick multiplication of large integers.
+
+---
+
+## **Why FFT is Important:**
+**Direct DFT Calculation:**
+- Computing DFT directly requires O(N²) operations
+- For N = 1024 points: 1,024² = 1,048,576 operations
+
+**FFT Algorithm:**
+- Computes the same result in only O(N log N) operations
+- For N = 1024 points: 1024 × log₂(1024) = 1024 × 10 = 10,240 operations
+- **Speed improvement: ~100 times faster!**
+
+---
+
+## **FFT Algorithm Types:**
+There are two main methods for implementing FFT:
+
+### 1. **Decimation in Time (DIT) FFT**
+- Divides the **input sequence** (time domain) into smaller groups
+- Separates samples into even and odd indexed groups
+- Process: Input → Split → Combine
+
+### 2. **Decimation in Frequency (DIF) FFT**
+- Divides the **output sequence** (frequency domain) into smaller groups
+- Process: Input → Process → Split output
+
+---
+
+## **How FFT Works (Radix-2 Method):**
+
+### **Basic Principle:**
+The FFT works by repeatedly dividing the DFT into smaller DFTs using a "divide and conquer" approach.
+
+### **Step-by-Step Process:**
+1. **Start with N-point DFT** (where N must be a power of 2: 2, 4, 8, 16, 32, ...)
+2. **Divide into two N/2-point DFTs**
+3. **Continue dividing** each sub-DFT until you reach 2-point DFTs
+4. **Combine results** using butterfly operations
+
+### **Example for N = 8:**
+- 8-point DFT → two 4-point DFTs
+- 4-point DFT → two 2-point DFTs
+- 2-point DFT → basic butterfly operation (no further division needed)
+
+---
+
+## **Decimation in Time (DIT) FFT Explained:**
+
+### **Input Separation:**
+For an input sequence x(n) where n = 0, 1, 2, ..., N-1:
+
+**Even indexed samples:** x(0), x(2), x(4), x(6), ...
+**Odd indexed samples:**  x(1), x(3), x(5), x(7), ...
+
+### **Process:**
+1. **Split input** into even and odd indexed groups
+2. **Compute N/2-point DFT** for each group separately
+3. **Combine results** using twiddle factors
+4. **Repeat process** recursively until reaching 2-point DFTs
+
+---
+
+## **FFT Computational Complexity:**
+
+### **For N-point FFT (where N = 2^m):**
+
+**Number of Stages:** m = log₂(N)
+- 8-point FFT: 3 stages (log₂(8) = 3)
+- 16-point FFT: 4 stages (log₂(16) = 4)
+- 1024-point FFT: 10 stages (log₂(1024) = 10)
+
+**Computational Requirements:**
+- **Multiplications:** N/2 × log₂(N)
+- **Additions:** N × log₂(N)
+
+### **Practical Examples:**
+
+**For N = 8:**
+- Multiplications: 8/2 × log₂(8) = 4 × 3 = 12
+- Additions: 8 × log₂(8) = 8 × 3 = 24
+
+**For N = 1024:**
+- Multiplications: 1024/2 × log₂(1024) = 512 × 10 = 5,120
+- Additions: 1024 × log₂(1024) = 1024 × 10 = 10,240
+
+**Compare with Direct DFT:**
+- Direct DFT for N = 1024: 1,024² = 1,048,576 operations
+- FFT for N = 1024: ~15,360 total operations
+- **Speedup: ~68 times faster!**
+
+---
+
+## **Key Requirements for Radix-2 FFT:**
+1. **N must be a power of 2** (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, ...)
+2. **If N is not a power of 2:** pad with zeros or use mixed-radix algorithms
+3. **Input data can be real or complex**
+4. **Output is always complex** (even for real input)
+
+---
+
+## **Summary:**
+The FFT is essentially the same as DFT but computed much more efficiently by:
+- **Breaking down** large DFTs into smaller ones
+- **Reusing calculations** through butterfly operations
+- **Reducing complexity** from O(N²) to O(N log N)
+- **Making real-time processing possible** for large data sets

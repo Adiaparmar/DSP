@@ -1,0 +1,119 @@
+clc;
+clear;
+// Let x(n) = {1, 2, 1, 2, 0, 2, 1, 2}
+// Let us begin with the programming. For understanding, let us write the given data as
+// x(0)=1; x(1)=2, x(2)=1, x(3)=2, x(4)=0, x(5)=2, x(6)=1, x(7)=2
+
+x0 = 1; // DIT-FFT, so arranging the input in bit-reversed order
+x4 = 0; // DIT-FFT, so arranging the input in bit-reversed order
+x2 = 1; // DIT-FFT, so arranging the input in bit-reversed order
+x6 = 1; // DIT-FFT, so arranging the input in bit-reversed order
+x1 = 2; // DIT-FFT, so arranging the input in bit-reversed order
+x5 = 2; // DIT-FFT, so arranging the input in bit-reversed order
+x3 = 2; // DIT-FFT, so arranging the input in bit-reversed order
+x7 = 2; // DIT-FFT, so arranging the input in bit-reversed order
+
+// Stage I computation
+x0a = x4 + x0; // Computing Stage-I output at line 1
+disp(x0a, "Stage-I output at line 1 = ")
+x4b = (x4 - x0) * (-1); // Computing Stage-I output at line 2
+disp(x4b, "Stage-I output at line 2 = ")
+x2c = x6 + x2; // Computing Stage-I output at line 3
+disp(x2c, "Stage-I output at line 3 = ")
+x6d = (x6 - x2) * (-1); // Computing Stage-I output at line 4
+disp(x6d, "Stage-I output at line 4 = ")
+x1e = x5 + x1; // Computing Stage-I output at line 5
+disp(x1e, "Stage-I output at line 5 = ")
+x5f = (x5 - x1) * (-1); // Computing Stage-I output at line 6
+disp(x5f, "Stage-I output at line 6 = ")
+x3g = x7 + x3; // Computing Stage-I output at line 7
+disp(x3g, "Stage-I output at line 7 = ")
+x7h = (x7 - x3) * (-1); // Computing Stage-I output at line 8
+disp(x7h, "Stage-I output at line 8 = ")
+
+// Stage-I output at line 4 and line 8 is to be multiplied by twiddle factor having value (-j)
+x6d1 = (x6d) * (-sqrt(-1));
+x7h1 = (x7h) * (-sqrt(-1));
+disp(x6d1, "Stage-I output (i.e. input to stage-II) after multiplication by twiddle factor value of (-j) at line 4 = ")
+disp(x7h1, "Stage-I output (i.e. input to stage-II) after multiplication by twiddle factor value of (-j) at line 8 = ")
+
+// Stage-II Computations
+x0a_stageII_output = x2c + x0a; // Computing Stage-II output at line 1
+disp(x0a_stageII_output, "Stage-II output at line 1 = ")
+x4b_stageII_output = x6d1 + x4b; // Computing Stage-II output at line 2
+disp(x4b_stageII_output, "Stage-II output at line 2 = ")
+x2c_stageII_output = (x2c - x0a) * (-1); // Computing Stage-II output at line 3
+disp(x2c_stageII_output, "Stage-II output at line 3 = ")
+x6d_stageII_output = (x6d1 - x4b) * (-1); // Computing Stage-II output at line 4
+disp(x6d_stageII_output, "Stage-II output at line 4 = ")
+x1e_stageII_output = x3g + x1e; // Computing Stage-II output at line 5
+disp(x1e_stageII_output, "Stage-II output at line 5 = ")
+x5f_stageII_output = x7h1 + x5f; // Computing Stage-II output at line 6
+disp(x5f_stageII_output, "Stage-II output at line 6 = ")
+x3g_stageII_output = (x3g - x1e) * (-1); // Computing Stage-II output at line 7
+disp(x3g_stageII_output, "Stage-II output at line 7 = ")
+x7h_stageII_output = (x7h1 - x5f) * (-1); // Computing Stage-II output at line 8
+disp(x7h_stageII_output, "Stage-II output at line 8 = ")
+
+// Stage-II output at line 6, line 7 and line 8 are to be multiplied by twiddle factor having value (0.707 - j 0.707), (-j) and (-0.707 - j 0.707) respectively
+x5f_stgII_op_multi_by_tw = (x5f_stageII_output) * (0.707 - (sqrt(-1)) * (0.707));
+disp(x5f_stgII_op_multi_by_tw, "Stage-II output at line 6 after multiplication by twiddle factor = ")
+x3g_stgII_op_multi_by_tw = (x3g_stageII_output) * (-(sqrt(-1)));
+disp(x3g_stgII_op_multi_by_tw, "Stage-II output at line 7 after multiplication by twiddle factor = ")
+x7h_stgII_op_multi_by_tw = (x7h_stageII_output) * (-0.707 - (sqrt(-1)) * (0.707));
+disp(x7h_stgII_op_multi_by_tw, "Stage-II output at line 8 after multiplication by twiddle factor = ")
+
+// Stage-III Computations (i.e. Computations for the final stage)
+X0 = x1e_stageII_output + x0a_stageII_output; // Computing X(0) at last stage
+X1 = x5f_stgII_op_multi_by_tw + x4b_stageII_output; // Computing X(1) at last stage
+X2 = x3g_stgII_op_multi_by_tw + x2c_stageII_output; // Computing X(2) at last stage
+X3 = x7h_stgII_op_multi_by_tw + x6d_stageII_output; // Computing X(3) at last stage
+X4 = (x1e_stageII_output - x0a_stageII_output) * (-1); // Computing X(4) at last stage
+X5 = (x5f_stgII_op_multi_by_tw - x4b_stageII_output) * (-1); // Computing X(5) at last stage
+X6 = (x3g_stgII_op_multi_by_tw - x2c_stageII_output) * (-1); // Computing X(6) at last stage
+X7 = (x7h_stgII_op_multi_by_tw - x6d_stageII_output) * (-1); // Computing X(7) at last stage
+
+disp(X0, "X(0) = ")
+disp(X1, "X(1) = ")
+disp(X2, "X(2) = ")
+disp(X3, "X(3) = ")
+disp(X4, "X(4) = ")
+disp(X5, "X(5) = ")
+disp(X6, "X(6) = ")
+disp(X7, "X(7) = ")
+disp([X0, X1, X2, X3, X4, X5, X6, X7], "So, the DFT of x(n) using Decimation-in-Time Fast Fourier Transform (DIT-FFT) is X(k) = ")
+
+OUTPUT:
+
+Stage-I output at line 1 = 1.
+Stage-I output at line 2 = 1.
+Stage-I output at line 3 = 2.
+Stage-I output at line 4 = 0.
+Stage-I output at line 5 = 4.
+Stage-I output at line 6 = 0.
+Stage-I output at line 7 = 4.
+Stage-I output at line 8 = 0.
+Stage-I output (i.e. input to stage-II) after multiplication by twiddle factor value of (-j) at line 4 = 0.
+Stage-I output (i.e. input to stage-II) after multiplication by twiddle factor value of (-j) at line 8 = 0.
+Stage-II output at line 1 = 3.
+Stage-II output at line 2 = 1.
+Stage-II output at line 3 = -1.
+Stage-II output at line 4 = 1.
+Stage-II output at line 5 = 8.
+Stage-II output at line 6 = 0.
+Stage-II output at line 7 = 0.
+Stage-II output at line 8 = 0.
+Stage-II output at line 6 after multiplication by twiddle factor = 0.
+Stage-II output at line 7 after multiplication by twiddle factor = 0.
+Stage-II output at line 8 after multiplication by twiddle factor = 0.
+X(0) = 11.
+X(1) = 1.
+X(2) = -1.
+X(3) = 1.
+X(4) = -5.
+X(5) = 1.
+X(6) = -1.
+X(7) = 1.
+So, the DFT of x(n) using Decimation-in-Time Fast Fourier Transform (DIT-FFT) is X(k) = 11. 1. -1. 1. -5. 1. -1. 1.
+RESULT:
+FFT of the sequence x[n] = [1, 2, 1, 2, 0, 2, 1, 2] is given by X[k] = [11, 1, -1, 1, -5, 1, -1, 1]

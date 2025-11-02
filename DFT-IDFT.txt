@@ -1,0 +1,53 @@
+clc;
+clear;
+x = [1,2,3,4];
+N = length(x);
+disp("Input Sequence:");
+disp(x);
+
+// DFT computation
+X = zeros(1,N);
+for k=0 : N-1
+    for n=0 : N-1
+        X(k+1) = X(k+1) + x(n+1)*exp(-%i*2*%pi*n*k/N);
+    end
+end
+
+disp("DFT of x(n):");
+disp(X);
+
+mag = abs(X);
+phase = atan(imag(X), real(X));
+subplot(2,2,1);
+plot2d3(0:N-1,x);
+xlabel("n");
+ylabel("x(n)");
+title("Input Signal");
+subplot(2,2,2);
+plot2d3(0:N-1, mag);
+xlabel("k");
+ylabel("|X(k)|");
+title("Magnitude Spectrum");
+
+subplot(2,2,3);
+plot2d3(0:N-1, phase);
+xlabel("k");
+ylabel("∠X(k)");
+title("Phase Spectrum");
+
+// IDFT Computation
+x_rec = zeros(1,N);
+for n=0:N-1
+    for k=0:N-1
+        x_rec(n+1) = x_rec(n+1) + X(k+1)*exp(%i*2*%pi*n*k/N);
+    end
+    x_rec(n+1) = x_rec(n+1)/N;
+end
+
+disp("Reconstructed signal");
+disp(x_rec);
+subplot(2,2,4);
+plot2d3(0:N-1, real(x_rec));
+xlabel("n");
+ylabel("x_rec(n)");
+title("Reconstructed Signal");

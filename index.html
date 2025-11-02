@@ -4,34 +4,329 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DSP Text Files</title>
+    <!-- Prism.js for syntax highlighting -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <h1>DSP Text Files</h1>
       <p>
-        Click on a button to copy the content of the corresponding text file to
-        clipboard.
+        Each topic has four options: Copy Code, Copy Theory, View Code, and View
+        Theory.
       </p>
 
-      <h1>Theory</h1>
-      <div class="buttons-container">
-        <button class="copy-btn" data-file="Rectangular Waveguide.txt">
-          Rectangular Waveguide
-        </button>
-        <button class="copy-btn" data-file="Circular Waveguide.txt">
-          Circular Waveguide
-        </button>
-        <button class="copy-btn" data-file="Coaxial Transmission Line.txt">
-          Coaxial Transmission Line
-        </button>
-        <button class="copy-btn" data-file="Strip Line.txt">Strip Line</button>
-        <button class="copy-btn" data-file="Micro Strip Line.txt">
-          Micro Strip Line
-        </button>
+      <div class="topics-container">
+        <!-- DFT/IDFT -->
+        <div class="topic-section">
+          <h2>DFT/IDFT</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="DFT-IDFT.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="DFT-IDFT_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="DFT-IDFT.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="DFT-IDFT_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- Z-transform -->
+        <div class="topic-section">
+          <h2>Z-transform</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="z-transform.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="z-transform_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="z-transform.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="z-transform_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- Z-transform Residue -->
+        <div class="topic-section">
+          <h2>Z-transform Residue</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="z-transform_residue.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="z-transform_residue_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="z-transform_residue.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="z-transform_residue_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- Circular Convolution -->
+        <div class="topic-section">
+          <h2>Circular Convolution</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="Circular_Convolution.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="Circular_Convolution_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="Circular_Convolution.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="Circular_Convolution_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- N-point FFT -->
+        <div class="topic-section">
+          <h2>N-point FFT</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="N-point_FFT.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="N-point_FFT_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="N-point_FFT.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="N-point_FFT_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- LPF-HPF Filter -->
+        <div class="topic-section">
+          <h2>LPF-HPF Filter</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="LPF-HPF_Filter.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="LPF-HPF_Filter_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="LPF-HPF_Filter.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="LPF-HPF_Filter_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- FIR Filter -->
+        <div class="topic-section">
+          <h2>FIR Filter</h2>
+          <div class="topic-buttons">
+            <button class="copy-btn" data-file="FIR.txt" data-action="copy">
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="FIR_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button class="view-btn" data-file="FIR.txt" data-action="view">
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="FIR_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
+
+        <!-- Auto Cross Correlation -->
+        <div class="topic-section">
+          <h2>Auto Cross Correlation</h2>
+          <div class="topic-buttons">
+            <button
+              class="copy-btn"
+              data-file="Auto_Cross_Correlation.txt"
+              data-action="copy"
+            >
+              Copy Code
+            </button>
+            <button
+              class="copy-btn"
+              data-file="Auto_Cross_Correlation_theory.txt"
+              data-action="copy"
+            >
+              Copy Theory
+            </button>
+            <button
+              class="view-btn"
+              data-file="Auto_Cross_Correlation.txt"
+              data-action="view"
+            >
+              View Code
+            </button>
+            <button
+              class="view-btn"
+              data-file="Auto_Cross_Correlation_theory.txt"
+              data-action="view"
+            >
+              View Theory
+            </button>
+          </div>
+        </div>
       </div>
+
+      <!-- Content display area for viewing files -->
+      <div id="content-display" class="content-display hidden">
+        <div class="content-header">
+          <h3 id="content-title"></h3>
+          <div class="header-controls">
+            <button id="copy-current" class="header-btn" title="Copy Content">
+              📋
+            </button>
+            <button id="close-content" class="close-btn">×</button>
+          </div>
+        </div>
+        <div id="content-body" class="content-body">
+          <div id="theory-content" class="theory-view hidden"></div>
+          <div id="code-content" class="code-view hidden">
+            <pre
+              class="line-numbers"
+            ><code id="code-block" class="language-matlab"></code></pre>
+          </div>
+        </div>
+      </div>
+
       <div id="status-message"></div>
     </div>
+
+    <!-- Marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,12 @@
+**THEORY:**
+
+**Auto correlation function** is a measure of similarity between a signal & its time delayed version. It is represented with R(k).
+
+The auto correlation function of x(n) is given by:
+
+\[R_{11}(k)=R(k)=\sum\nolimits_{n=-\infty}^{\infty}x1(n)x2(n-k)\]
+
+**Cross correlation:**
+Cross-correlation is a measure of similarity of two series as a function of the displacement of one relative to the other. This is also known as a sliding dot product or sliding inner-product.
+
+The cross-correlation is similar in nature to the convolution of two functions.

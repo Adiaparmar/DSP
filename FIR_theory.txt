@@ -1,0 +1,80 @@
+**THEORY:**
+Finite Impulse Response (FIR) Filters designed by using finite samples of Impulse response are called FIR Filters. For the designing of Finite filters, windows of finite duration are used. The windows are used to modify the impulse response of FIR filters in order to reduce the ripples in the passband and stopband.
+
+The different types of window sequence to design the FIR filter are as below:
+
+1. Rectangular window \( w_R(n) \)
+2. Triangular window \( w_T(n) \)
+3. Raised Cosine windows \( w_{RC}(n) \)
+4. Hanning window \( w_C(n) \)
+5. Hamming window \( w_H(n) \)
+6. Kaiser window \( w_K(n) \)
+
+---
+
+### 1. Rectangular Window \( w_R(n) \):
+The rectangular window is the simplest window - it's just a box that cuts off the signal.
+
+**Formula (Symmetric about zero):**
+w_R(n) = 1    for n = -(N-1)/2 to +(N-1)/2
+w_R(n) = 0    for all other values of n
+
+**Formula (Starting from zero):**
+w_R(n) = 1    for n = 0 to N-1
+w_R(n) = 0    for all other values of n
+
+**Explanation:** N is the window length. The window has value 1 inside the range and 0 outside.
+
+---
+
+### 2. Triangular Window \( w_T(n) \):
+The triangular window creates a triangle shape that tapers from the center to zero at the edges.
+
+**Formula (Symmetric about zero):**
+w_T(n) = 1 - (2×|n|)/(N-1)    for n = -(N-1)/2 to +(N-1)/2
+w_T(n) = 0                     for all other values of n
+
+**Formula (Starting from zero):**
+w_T(n) = 1 - (2×|n|)/(N-1)    for n = 0 to N-1
+w_T(n) = 0                     for all other values of n
+
+**Explanation:**
+- |n| means absolute value of n
+- The window starts at 1 in the center and linearly decreases to 0 at the edges
+- (N-1) is used for normalization
+
+---
+
+### 3. Kaiser Window \( w_K(n) \):
+The Kaiser window uses a mathematical function to create an optimal trade-off between main lobe width and side lobe levels.
+
+**Formula (Symmetric about zero):**
+w_K(n) = I_0(β₁) / I_0(a)    for n = -(N-1)/2 to +(N-1)/2
+w_K(n) = 0                    for all other values of n
+
+Where: β₁ = a × √[1 - (2n/(N-1))²]
+
+**Formula (Starting from zero):**
+w_K(n) = I_0(β₂) / I_0(a₂)    for n = 0 to N-1
+w_K(n) = 0                     for all other values of n
+
+Where:
+- β₂ = a × √[((N-1)/2)² - (n - (N-1)/2)²]
+- a₂ = a × (N-1)/2
+
+**Parameters:**
+- 'a' = shape parameter (controls side lobe suppression)
+  - Larger 'a' = better side lobe suppression but wider main lobe
+  - Typical values: 4 to 9
+- I₀(x) = modified Bessel function of the first kind, order zero
+
+**Bessel Function Calculation:**
+I₀(x) = 1 + (0.25×x²)/1² + (0.25×x²)²/2² + (0.25×x²)³/3² + ...
+
+**Simplified Bessel Function:**
+I₀(x) ≈ 1 + (x²/4)/1! + (x²/4)²/2! + (x²/4)³/3! + ...
+
+**Explanation:**
+- The Kaiser window provides the best approximation to an ideal window
+- It's controlled by parameter 'a' which adjusts the trade-off between main lobe width and side lobe levels
+- I₀(x) is calculated using an infinite series (usually truncated after sufficient terms for accuracy)

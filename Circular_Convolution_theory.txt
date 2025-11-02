@@ -1,0 +1,100 @@
+**THEORY:**
+
+## **What is Circular Convolution?**
+
+Circular convolution is a mathematical operation used in digital signal processing that:
+- **Combines two discrete signals** in a circular (wraparound) manner
+- **Differs from linear convolution** by treating signals as if they repeat periodically
+- **Is fundamental in DFT-based processing** since DFT assumes periodic signals
+- **Produces output of same length** as the input signals (when both are same length)
+
+---
+
+## **How Circular Convolution Works:**
+
+### **Key Differences from Linear Convolution:**
+
+**Linear Convolution:**
+- Signal extends infinitely in both directions
+- No wraparound effects
+- Output length = N + M - 1 (where N, M are input lengths)
+
+**Circular Convolution:**
+- Signal is treated as periodic (repeats every N samples)
+- Values "wrap around" when shifted beyond boundaries
+- Output length = max(N, M) samples
+- Sample values fold and right-shift in a circular manner
+
+---
+
+## **Mathematical Formula:**
+
+**Circular Convolution Definition:**
+y(n) = Σ[k=0 to N-1] x(k) × h((n-k) mod N)
+
+**Breaking down the formula:**
+- **y(n)** = output of circular convolution at sample n
+- **x(k)** = first input signal samples
+- **h(n-k)** = second input signal, time-reversed and shifted
+- **(n-k) mod N** = modulo operation (ensures circular wraparound)
+- **N** = length of the sequences (both signals must be same length)
+- **Σ[k=0 to N-1]** = sum from k=0 to k=N-1
+
+**What "mod N" means:**
+- When (n-k) goes negative, it wraps to positive values
+- When (n-k) exceeds N-1, it wraps back to 0
+- Example: For N=4, index -1 becomes 3, index 4 becomes 0
+
+---
+
+## **Two Methods to Calculate Circular Convolution:**
+
+### **Method 1: Direct Time-Domain Calculation**
+1. **Extend both signals** to same length N (pad with zeros if needed)
+2. **For each output sample n:**
+   - Take second signal h(k)
+   - Flip it (time reverse): h(-k)
+   - Shift it by n samples: h(n-k)
+   - Apply circular boundary (mod N): h((n-k) mod N)
+   - Multiply with first signal: x(k) × h((n-k) mod N)
+   - Sum all products for k = 0 to N-1
+
+### **Method 2: Frequency Domain (DFT Method)**
+1. **Take DFT** of both input signals: X(k) = DFT{x(n)}, H(k) = DFT{h(n)}
+2. **Multiply** the DFTs point-by-point: Y(k) = X(k) × H(k)
+3. **Take Inverse DFT** to get result: y(n) = IDFT{Y(k)}
+
+**Why this works:**
+- **Circular convolution in time** ↔ **Multiplication in frequency**
+- DFT inherently assumes signals are periodic (circular)
+- Much faster for large N using FFT algorithms
+
+---
+
+## **Matrix Representation (Circulant Matrix):**
+
+### **Circulant Matrix Structure:**
+For a signal x(n) with N samples, the N×N circulant matrix C has the form:
+
+```
+C = [x(0)   x(N-1) x(N-2) ... x(2)   x(1)  ]
+    [x(1)   x(0)   x(N-1) ... x(3)   x(2)  ]
+    [x(2)   x(1)   x(0)   ... x(4)   x(3)  ]
+    [  ⋮      ⋮      ⋮    ⋱    ⋮      ⋮   ]
+    [x(N-2) x(N-3) x(N-4) ... x(0)   x(N-1)]
+    [x(N-1) x(N-2) x(N-3) ... x(1)   x(0)  ]
+```
+
+### **Matrix Properties:**
+- **Each row** is a circular shift of the previous row
+- **First column** contains x(n) in order: x(0), x(1), x(2), ..., x(N-1)
+- **Each subsequent column** is the previous column shifted down by 1 (with wraparound)
+
+### **Computing Circular Convolution:**
+y = C × h
+
+Where:
+- **C** = N×N circulant matrix formed from x(n)
+- **h** = column vector of second signal [h(0), h(1), ..., h(N-1)]ᵀ
+- **y** = resulting circular convolution [y(0), y(1), ..., y(N-1)]ᵀ
+

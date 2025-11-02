@@ -1,0 +1,126 @@
+**THEORY:**
+
+## **What is DFT (Discrete Fourier Transform)?**
+
+The Discrete Fourier Transform (DFT) is a fundamental tool in digital signal processing that:
+- **Converts time-domain signals** into frequency-domain representation
+- **Analyzes frequency content** of discrete signals
+- **Enables efficient filtering** and signal processing operations
+- **Forms the basis** for FFT (Fast Fourier Transform) algorithms
+
+**Key Point:** DFT works with **finite-length sequences** (unlike DTFT which works with infinite sequences)
+
+---
+
+## **How DFT Works:**
+
+### **Input:**
+- **x(n)** = discrete time signal with N samples
+- **Sample indices:** n = 0, 1, 2, ..., N-1
+
+### **Output:**
+- **X(k)** = frequency domain representation with N frequency bins
+- **Frequency indices:** k = 0, 1, 2, ..., N-1
+
+### **Relationship:**
+The DFT samples the DTFT (Discrete-Time Fourier Transform) at N equally-spaced frequency points:
+- **Frequency spacing:** 2π/N radians per sample
+- **Time duration:** N samples determines frequency resolution
+
+---
+
+## **DFT Formula (Forward Transform):**
+
+**Mathematical Formula:**
+X(k) = Σ[n=0 to N-1] x(n) × e^(-j2πnk/N)
+
+**Breaking down the formula:**
+- **X(k)** = DFT output at frequency bin k
+- **x(n)** = input time domain signal at sample n
+- **k** = frequency bin index (0 to N-1)
+- **n** = time sample index (0 to N-1)
+- **N** = total number of samples
+- **e^(-j2πnk/N)** = complex exponential (basis function)
+- **j** = imaginary unit (√-1)
+- **Σ** = summation from n=0 to n=N-1
+
+**Alternative notation:**
+X(k) = Σ[n=0 to N-1] x(n) × [cos(2πnk/N) - j×sin(2πnk/N)]
+
+**What this formula does:**
+1. For each frequency bin k (k = 0, 1, 2, ..., N-1)
+2. Multiply each time sample x(n) by a complex exponential
+3. Sum all these products
+4. Result X(k) tells us how much of frequency k is in the signal
+
+---
+
+## **IDFT Formula (Inverse Transform):**
+
+**Mathematical Formula:**
+x(n) = (1/N) × Σ[k=0 to N-1] X(k) × e^(+j2πnk/N)
+
+**Breaking down the formula:**
+- **x(n)** = recovered time domain signal at sample n
+- **X(k)** = frequency domain input at bin k
+- **1/N** = normalization factor (scales the result properly)
+- **k** = frequency bin index (0 to N-1)
+- **n** = time sample index (0 to N-1)
+- **e^(+j2πnk/N)** = complex exponential (note the + sign)
+
+**Alternative notation:**
+x(n) = (1/N) × Σ[k=0 to N-1] X(k) × [cos(2πnk/N) + j×sin(2πnk/N)]
+
+**What this formula does:**
+1. For each time sample n (n = 0, 1, 2, ..., N-1)
+2. Multiply each frequency bin X(k) by a complex exponential
+3. Sum all these products
+4. Scale by 1/N to get the original signal back
+
+---
+
+## **Key Differences Between DFT and IDFT:**
+
+| Aspect | DFT (Forward) | IDFT (Inverse) |
+|--------|---------------|----------------|
+| **Input** | Time domain x(n) | Frequency domain X(k) |
+| **Output** | Frequency domain X(k) | Time domain x(n) |
+| **Exponential sign** | e^(-j2πnk/N) | e^(+j2πnk/N) |
+| **Normalization** | None | 1/N factor |
+| **Purpose** | Find frequency content | Recover original signal |
+
+---
+
+## **Understanding the Complex Exponential:**
+
+**Euler's Formula:**
+e^(±j2πnk/N) = cos(2πnk/N) ± j×sin(2πnk/N)
+
+**What this represents:**
+- **cos(2πnk/N)** = real part (cosine wave)
+- **j×sin(2πnk/N)** = imaginary part (sine wave)
+- Together they form a **rotating phasor** in the complex plane
+
+**Physical Meaning:**
+- Each X(k) represents how much the input signal correlates with a specific frequency
+- The complex result gives both **magnitude** and **phase** information
+
+---
+
+## **Practical Properties:**
+
+### **Frequency Resolution:**
+- **Frequency bin spacing:** Fs/N Hz (where Fs = sampling frequency)
+- **Better resolution:** Use longer sequences (larger N)
+- **Trade-off:** Longer sequences = more computation
+
+### **Symmetry Properties:**
+For **real-valued input** x(n):
+- X(k) = X*(N-k) (complex conjugate symmetry)
+- Only need to compute first N/2+1 points
+- Saves computation time
+
+### **Computational Complexity:**
+- **Direct DFT:** O(N²) operations
+- **FFT algorithm:** O(N log N) operations
+- **For N = 1024:** FFT is ~100 times faster than direct DFT
