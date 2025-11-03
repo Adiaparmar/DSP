@@ -1,0 +1,98 @@
+Object: Design and simulate a Wilkinson power divider at 2.4GHz frequency and analyze its S parameter.
+
+Software Used: HFSS software (16.0)
+
+Theory:
+Fig 4.7: Wilkinson power divider
+
+Fig 4.7 shows the basic structure of Wilkinson power divider. Wilkinson Power divider is a 3-port device in which one input port and two output ports. It splits an input signal into two equal phase output signals or combines two equal-phase signals into one in the opposite direction. When the power is fed at input port P1, power will emerge from the other two ports P2 and P3. It is impossible to match all the ports of the power divider. In order to match all the three ports, an isolation resistance of 2Z0 is added between ports P2 and P3. With this the proper isolation is provided between ports P2 and P3.
+
+Design formula:
+
+Wavelength:
+λ = c/f (4.B.1)
+where: λ is wavelength,
+f is target frequency
+c is velocity of light
+
+Width of transmission line with Z0 characteristic impedance:
+W/h = 8e^A/(e^2A-2) for W/h < 2 (4.B.2)
+
+Where: w is width of transmission line
+h is height of substrate
+
+A = (Z0/60) * √((εr+1)/2) + ((εr-1)/(εr+1))*(0.23 + 0.11/εr) (4.B.3)
+
+Where:
+Z0 is characteristic impedance
+εr is dielectric constant
+
+Design Parameters:
+Frequency (f) = 2.4GHz
+Z0 = 50 ohm
+Substrate: FR4 Epoxy, εr = 4.4
+h = 1.6mm
+
+Calculation:
+Using equation 4.B.1:
+λ = 125mm
+λ/4 = 31.25mm
+λ/2 = 62.5mm
+
+Using equation 4.B.3:
+A1 = 1.529 when impedance is Z0
+A2 = 1.936 when impedance is 1.414Z0
+
+Using equation 4.B.2:
+w1 = 3.05mm when impedance is Z0
+w2 = 1.93mm when impedance is 1.414Z0
+
+Procedure:
+
+1. Insert HFSS design in project and save.
+
+2. Draw a box with Position (-19.657,-12.857,-1.6), x size=39.314mm, y size=25.714mm and z size=1.6mm.
+
+3. Rename the box as substrate and assign FR4 epoxy material to substrate.
+
+4. Draw a rectangle 1 with position (-19.657,-12.857,-1.6), x size=39.314mm, y size=25.714mm and axis is Z. Rename as ground.
+
+5. Draw a circle 1 with center position (0,0,0), radius=11.857mm and axis is Z.
+
+6. Draw circle 2 with center position (0,0,0), radius=9.927mm and axis is Z.
+
+7. Subtract circle 2 from circle 1 and rename it as power divider.
+
+8. Draw a rectangle 2 with position (9.8,-1.5,0), x size=2.2mm, y size=3mm and axis is Z.
+
+9. Subtract rectangle 2 from power divider.
+
+10. Draw a rectangle 3 with position (-19.657,-1.5,0), x size=7.8mm, y size=3mm and axis is Z.
+
+11. Draw a rectangle 4 with position (11.5,1.5,0), x size=7.8mm, y size=3mm and axis is Z.
+
+12. Draw a rectangle 5 with position (11.5,-1.5,0), x size=7.8mm, y size=-3mm and axis is Z.
+
+13. Draw a rectangle 6 with position (16.657,1.5,0), x size=3mm, y size=11.357mm and axis is Z.
+
+14. Draw a rectangle 7 with position (16.657,-1.5,0), x size=3mm, y size=-11.357mm and axis is Z.
+
+15. Unite power divider and all rectangle ports.
+
+16. Assign "Perfect E" boundary to ground and power divider.
+
+17. Assign wave ports to all three ports and assign integration line to input port.
+
+18. Add solution setup with "2.4GHz" solution frequency, "15" number of passes and "0.02" maximum delta.
+
+19. Add frequency sweep with "fast" sweep type and range between 2GHz to 3GHz with 0.01GHz step size.
+
+20. Validate and analyze all.
+
+21. After normal completion generate results.
+
+Conclusion:
+We studied about Wilkinson power divider and perform its simulation on software at 2.4GHz
+frequency. Return loss at 2.4GHz frequency is below -10dB. Power received at port2 and port3
+is above -4.2dB. These results have good correlation with theoretical results at 2.4 GHz
+frequency. It shows, equal power is delivered at port 2 and port 3.

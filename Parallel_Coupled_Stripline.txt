@@ -1,0 +1,85 @@
+Object: Design a Planar Transmission Lines (Parallel Coupled Strip Line) for F= 2GHz frequency and determine their field patterns and Characteristic impedance.
+
+Requirement: HFSS software (16.0)
+
+Theory:
+Parallel Coupled Strip line:
+Parallel lines consist of low loss dielectric sandwiched between two parallel conductor's strips.
+The strip width w, the separation s, and relative dielectric constant of the dielectric slab is ∈reff.
+Usually width is much greater than the conductor spacing and the metal thickness is quite small.
+Parallel strip line can be easily fabricated on dielectric by using printed circuit technology.
+
+Fig 3.20: Parallel Coupled Strip Line
+
+Calculation: The impedance of strip line is calculated as:
+
+Z0 = (377*H)/(W*√εreff) ohm (1)
+
+εreff = (εr+1)/2 + (εr-1)/(2√(1+12H/W)) (2)
+
+L = (c/f) * (1/√εeff) * (1/2) meter (3)
+
+Where:
+Z0 = characteristics Impedance (50Ω)
+h = height of substrate from ground to center of Strip line (for strip line h=1.6mm)
+W = width of strip line
+εeff = effective refractive index of material (For FR4 εeff= 3.9)
+F = frequency of operation (F=2GHz)
+
+From equation (1):
+W = (377 * h)/(Z0 * √εreff) mm
+W = (377 * 0.8)/(50 * √3.9) mm
+W = 3.054mm
+
+From equation (3):
+L = (3*10^8)/(2*10^9) * (1/√3.9) * (1/2) meter
+L = 0.0379 meter
+
+Procedure:
+
+1. Select the desired frequency (F=2 GHz) and the dielectric material (FR4 with εr=4.4 and height of substrate is h=1.6mm).
+
+2. Draw dielectric substrate box of size x=20mm, y=38mm and z=1.6mm with starting point (-10, -19, -0.8).
+
+3. Draw ground plane1 x=20mm, y=38mm with starting point (-10, -19, -0.8).
+
+4. Draw ground plane2 x=20mm, y=38mm with starting point (-10, -19, 0.8).
+
+5. Add variable $a for vary the spacing between parallel strip line:
+   Project → Project Variable → Add Variable unit type Length (mm)
+
+6. Draw strip line1 x=3.05mm, y=38mm with starting point ($a, -19, 0).
+
+7. Draw strip line2 x=-3.05mm, y=38mm with starting point (-$a, -19, 0).
+
+8. Draw vacuum box of size x=30mm, y=38mm and z=10mm with starting point (-15, -19, -2).
+
+9. Select ground plane1, Ground plane2, stripline1 and stripline2 and assign perfect E for finite conductivity.
+
+10. Draw four rectangles for the transmission of two different signals at the surface.
+
+11. Rectangle1: x=3.05mm, z=1.6mm with starting point ($a, -19, -0.8).
+
+12. Rectangle2: x=-3.05mm, z=1.6mm with starting point (-$a, -19, -0.8).
+
+13. Rectangle3: x=3.05mm, z=1.6mm with starting point ($a, 19, -0.8).
+
+14. Rectangle4: x=-3.05mm, z=1.6mm with starting point (-$a, 19, -0.8).
+
+15. Select each rectangle and assign excitation:
+    Assign Excitation → assign port → wave port
+
+16. Select four surfaces of vacuum box except excitation side and assign radiation pattern.
+
+17. Create the solution setup:
+    set solution frequency → add frequency sweep
+
+18. Validate the design.
+
+19. Analysis the design and show the result (create rectangular plot s11 plot).
+
+20. Create model solution data plot for S11 parameter, radiation pattern and Characteristics Impedance.
+
+Conclusion: we have designed the parallel coupled strip line for F=2 GHz and obtain the
+minimum reflection coefficient (S11-parameter) for the F =2.1GHz frequency. So, the error in
+reflection coefficient is 5%. The characteristics impedance for 2GHz is 17ohm.

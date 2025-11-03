@@ -1,0 +1,68 @@
+Object: Design a Planar Transmission Lines (Slot line) for F= 2GHz frequency and determine their field patterns and Characteristic impedance.
+
+Requirement: HFSS software (16.0)
+
+Theory:
+Slot line:
+Structure consists of a slot etched from the conducting layer on the one surface and other is without any conducting layer. The structure is thus complimentary to that of a micro-strip line.
+The series and parallel elements can be connected without much difficulty in this type of structure. It is a useful alternative to micro-strip in the fabrication of microwave integrated circuits. The electric and magnetic field of waves propagating in slot line is non-TEM mode. The electric field is essentially across the slot while the magnetic field has both transverse and longitudinal components.
+
+
+Calculation: The impedance of slot line is calculated as:
+
+Δw = 
+    Case 1: (t/2π)[1 + 1/εr] × ln(10.872/[(t/λ₀)q⁰ + (1/π/(w/h + 1.1))²]), for 4×10⁻⁵ ≤ t/λ₀ < 3.6×10⁻⁴
+    Case 2: (t/2π)[1 + 1/cosh(√(εr-1))] × ln(10.872/[(t/λ₀)coth²(√(6.517(w/h)))]), for 3.6×10⁻⁴ ≤ t/λ₀ < 6×10⁻⁴
+    Case 3: (t/π)[1 + ln(4) - 0.5ln(t/λ₀)q⁰ + (t/πw)²], for 6×10⁻⁴ ≤ t/λ₀ ≤ 3.33×10⁻³
+
+Where:
+q₀ = 2 for frequency less than 18GHz
+t = thickness of slot line (35 micron)
+εr = permittivity of dielectric material
+w = width of microstrip line (from reference = 3.056mm)
+
+weq = w - Δw
+weq = 2.95mm
+
+L = (c/f) * (1/√εeff) * (1/2) meter
+L = (3×10⁸)/(2×10⁹) * (1/√3.9) * (1/2) meter
+L = 0.0379 meter
+
+Procedure:
+
+1. Select the desired frequency (F=2 GHz) and the dielectric material (FR4 with εr=4.4 and height of substrate is h=1.6mm).
+
+2. Draw dielectric substrate box of size x=20mm, y=38mm and z=1.6mm with starting point (-10, -19, -0.8).
+
+3. Draw ground plane1 x=20mm, y=38mm with starting point (-10, -19, -0.8).
+
+4. Draw ground plane2 x=20mm, y=38mm with starting point (-10, -19, 0.8).
+
+5. Draw strip line x=3.05mm, y=38mm with starting point (-1.525, -19, 0.8).
+
+6. Subtract strip line from ground plane2 for slot cutting.
+
+7. Draw vacuum box of size x=30mm, y=38mm and z=10mm with starting point (-15, -19, -2).
+
+8. Select ground plane1, ground plane2 and strip line and assign perfect E for finite conductivity.
+
+9. Select one side of strip line and assign excitation:
+   Assign Excitation → assign port → wave port
+
+10. Follow step 9 for another side of strip line.
+
+11. Select four surfaces of vacuum box except excitation side and assign radiation pattern.
+
+12. Create the solution setup:
+    set solution frequency → add frequency sweep
+
+13. Validate the design.
+
+14. Analysis the design and show the result (create rectangular plot s11 plot).
+
+15. Create model solution data plot for S11 parameter, radiation pattern and Characteristics Impedance.
+
+
+Conclusion: we have designed the slot line for F=2 GHz and obtain the minimum reflection
+coefficient (S11-parameter) for the f = 1.9GHz frequency and real impedance is 23.19 ohm at f =
+2GHz frequency. So, the error in reflection coefficient s11 is 5%.

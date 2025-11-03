@@ -1,0 +1,86 @@
+Object: Design and simulate 5th order Band pass filter of center frequency 1.5GHz and bandwidth of 1 GHz, and analyze its S parameter.
+
+Software Used: HFSS software (16.0)
+
+Theory:
+Figure 4.31: Band pass filter
+
+Figure shows one of the structures of band pass filter. It has many different structures also. This is designed using stepped impedance technique. The design procedure of step impedance microstrip structure is based on the insertion loss (IL) method. The IL methods allows a high degree of control over the pass band and stop band amplitude and phase characteristics, with a systematic way to synthesize a desired filter response.
+
+Fig 4.32: Schematic of desired BPF
+
+Figure shows the schematic of desired BPF. There we skipped all theory related to BPF. Using the insertion loss method this schematic can be found. And then microstrip equivalent impedances (ZH and ZL) can be found. Here, we have used ZH (higher impedance) of 100 ohm and ZL (lower impedance) of 24 ohms. Length of Microstrip line can be found using relationship between transmission line length and inductance and capacitance at cut off frequency.
+
+Design formula:
+Width of transmission line with Z0 characteristic impedance:
+W/h = 8e^A/(e^2A-2) for W/h < 2 (4.F.1)
+
+Where: W is width of transmission line
+h is height of substrate
+
+A = (Z0/60) * √((εr+1)/2) + ((εr-1)/(εr+1))*(0.23 + 0.11/εr) (4.F.2)
+
+Z0 is characteristic impedance
+εr is dielectric constant
+
+Design Parameters:
+Frequency (F) = 1.5GHz
+Order N = 5
+Bandwidth = 1 GHz
+ZH = 100 ohm
+ZL = 24 ohm
+Substrate: RO3203, εr = 3.02
+h = 0.8mm
+
+Calculation:
+Using equation 4.F.1:
+W1 = 1.836mm when impedance is 50 ohms
+W2 = 6.352mm when impedance is 24 ohms
+W3 = 0.4801mm when impedance is 100 ohms
+
+Lengths of strips are taken:
+l1 = 3.95mm, l2 = 9.33mm, l3 = 8.25mm, l4 = 9.33mm, l5 = 3.95mm
+
+Procedure:
+
+1. Insert HFSS design in project and save.
+
+2. Draw a box with Position (0,0,0), x size=49.81mm, y size=6.352mm and z size=0.8mm.
+
+3. Rename the box as substrate and assign RO3203 material to substrate.
+
+4. Draw a rectangle 1 with position (0,0,0), x size=49.81mm, y size=6.352mm and axis is Z. Rename as ground.
+
+5. Draw a rectangle 2 with position (0,2.258,0.8), x size=7.5mm, y size=1.836mm and axis is Z.
+
+6. Draw a rectangle 3 with position (7.5,0,0.8), x size=3.95mm, y size=6.352mm and axis is Z.
+
+7. Draw a rectangle 4 with position (11.45,2.935,0.8), x size=9.33mm, y size=0.4801mm and axis is Z.
+
+8. Draw a rectangle 5 with position (20.75,0,0.8), x size=8.25mm, y size=6.352mm and axis is Z.
+
+9. Draw a rectangle 6 with position (29,2.935,0.8), x size=9.33mm, y size=0.4801mm and axis is Z.
+
+10. Draw a rectangle 7 with position (38.33,0,0.8), x size=3.95mm, y size=6.352mm and axis is Z.
+
+11. Draw a rectangle 8 with position (42.28,2.258,0.8), x size=7.5mm, y size=1.836mm and axis is Z.
+
+12. Unite all rectangles 2,3,4,5,6,7 and 8 and rename it as filter.
+
+13. Assign "Perfect E" boundary to ground and filter.
+
+14. Assign wave ports to all ports and assign integration line to input port.
+
+15. Add solution setup with "1.5GHz" solution frequency, "15" number of passes and "0.02" maximum delta.
+
+16. Add frequency sweep with "fast" sweep type and range between 1GHz to 2GHz with 0.01GHz step size.
+
+17. Validate and analyze all.
+
+18. After normal completion generate results.
+
+
+Conclusion:
+We have designed a 5th order Low pass filter with cut off frequency is 2.5GHz. Return loss (S11)
+before 2.5GHz frequency is -10dB and insertion (S21) is nearly 0dB. Signal attenuated after
+2.5GHz frequency.

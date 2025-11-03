@@ -1,0 +1,90 @@
+Object: Design and simulate a 3-dB branch line coupler at F=2.4GHz frequency and analyze its S parameter.
+
+Software Used: HFSS software (16.0)
+
+Theory:
+Fig 4.1: 3-dB branch line coupler
+
+Fig 4.1 shows the simplest form of 3-dB branch line coupler. The Branch line coupler is a signal divider that can separate an incoming signal into two equal powers, but 90-degree phase shifted signals. It consists of 4 ports: Input (1), Output 1 (2) and Output 2 (3). The fourth port (4) is terminated at 50 ohms for the signal splitter and is isolated from the input. The branch line coupler consists of four transmission lines, each a quarter-wavelength long at the target frequency. Z0 is the characteristic impedance of transmission line which is 50 ohm and λ is the wavelength of the target frequency.
+
+Design formula:
+
+1. Wavelength:
+λ = c/f (4.A.1)
+where: λ is wavelength,
+f is target frequency
+c is velocity of light
+
+2. Width of transmission line with Z0 characteristic impedance:
+W/h = 8e^A/(e^2A-2) for W/h < 2 (4.A.2)
+
+Where: W is width of transmission line
+h is the height of substrate
+A = (Z0/60) * √((εr+1)/2) + ((εr-1)/(εr+1))*(0.23 + 0.11/εr) (4.A.3)
+
+Z0 is characteristic impedance
+εr is dielectric constant
+
+Design Parameters:
+Frequency (f) = 2.4GHz
+Z0 = 50 ohm
+Substrate: FR4 Epoxy, εr = 4.4
+h = 1.6mm
+
+Calculation:
+Using equation 4.A.1:
+λ = 125mm
+λ/4 = 31.25mm
+
+Using equation 4.A.3:
+A1 = 1.529 when impedance is Z0
+A2 = 1.128 when impedance is 0.707Z0
+
+Using equation 4.A.2:
+W1 = 3.05mm when impedance is Z0
+W2 = 5.24mm when impedance is 0.707Z0
+
+Procedure:
+
+1. Insert HFSS design in project and save.
+
+2. Draw a box with Position (0,0,0), x size=62.3mm, y size=36.49mm and z size=1.6mm.
+
+3. Rename the box as substrate and assign FR4 epoxy material to substrate.
+
+4. Draw a rectangle 1 with position (0,0,0), x size=62.25mm, y size=36.49mm and axis is Z. Rename as ground.
+
+5. Draw a rectangle 2 with position (14,0,1.6), x size=34.25mm, y size=36.49mm and axis is Z.
+
+6. Draw a rectangle 3 with position (17,5.2,1.6), x size=28.25mm, y size=26.05mm and axis is Z.
+
+7. Subtract rectangle 3 from rectangle 2.
+
+8. Draw a rectangle 4 with position (0,2.2,1.6), x size=14mm, y size=3mm and axis is Z.
+
+9. Draw a rectangle 5 with position (0,31.25,1.6), x size=14mm, y size=3mm and axis is Z.
+
+10. Draw a rectangle 6 with position (48.25,2.2,1.6), x size=14mm, y size=3mm and axis is Z.
+
+11. Draw a rectangle 7 with position (48.25,31.25,1.6), x size=14mm, y size=3mm and axis is Z.
+
+12. Unite all rectangles 2,4,5,6,7 and rename it as Branch line.
+
+13. Assign "Perfect E" boundary to ground and branch line.
+
+14. Assign wave ports to all four ports and assign integration line to input port.
+
+15. Add solution setup with "2.4GHz" solution frequency, "15" number of passes and "0.02" maximum delta.
+
+16. Add frequency sweep with "fast" sweep type and range between 2GHz to 3GHz with 0.01GHz step size.
+
+17. Validate and analyze all.
+
+18. After normal completion generate results.
+
+
+Conclusion:
+We studied about 3dB branch line coupler and perform the same in software for 2.4GHz
+frequency. Parametric analysis is done on the length of the main line and coupled line. Length
+varies by 0.5mm. As per results Return loss at 2.4GHz frequency is below -30dB and isolation at
+port 4 is also below -20dB. Power received at 3 is nearly -3.5dB.
