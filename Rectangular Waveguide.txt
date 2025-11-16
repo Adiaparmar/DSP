@@ -1,0 +1,79 @@
+Aim: Design a rectangular waveguide with a cut off frequency of 6.56 GHz in the TE10 mode and observe the E and H-field patterns for TE10 and TE20 modes inside the rectangular waveguide.
+
+Requirement: HFSS software (version 16.0)
+
+Theory:
+Rectangular Waveguide
+A rectangular waveguide is a hollow metallic tube with a rectangular cross section. The conducting walls of the waveguide confine the electromagnetic fields and thereby guide the electromagnetic wave. The rectangular waveguide is basically characterized by its dimensions i.e., width 'a' and height 'b' along x and y directions and 'd' is the length of waveguide in z direction as shown in Fig.1.1
+
+Waveguide propagation modes depend on the operating wavelength, polarization and the shape and size of the guide. The modes of the waveguide are typically classified into following types:
+- TE modes (Transverse Electric) have no electric field component in the direction of propagation.
+- TM modes (Transverse Magnetic) have no magnetic field component in the direction of propagation.
+- TEM modes (Transverse Electromagnetic) have neither electric nor magnetic field component in the direction of propagation.
+
+A rectangular waveguide supports TM and TE modes but not TEM waves because we cannot define a unique voltage, since there is only one conductor in a rectangular waveguide. The shape of a rectangular waveguide as a waveguide component is as shown in Fig.1.2.
+
+
+A hollow rectangular waveguide has air filled inside it and it is having a finite conductive boundary. We can observe the change in the field pattern, i.e. electric and magnetic field patterns with the change in modes inside a rectangular waveguide. One can observe the field patterns of various modes in xy, xz and yz planes for different frequency bands.
+
+
+Design formula
+The formula for cut off wavelength (λc)mn inside a rectangular waveguide is given by:
+(λc)mn = 2/√((m/a)² + (n/b)²) ...............................................................(1.1)
+
+Where:
+a = inside width, longest dimension
+b = inside height, shortest dimension
+m = Number of half wavelength variations of field in the "a" direction
+n = Number of half wavelength variations of field in the "b" direction
+λc = cutoff wavelength
+
+(λc)mn = c/fc .............................................................................(1.2)
+
+Where:
+c = velocity of light = 3 × 10^8 m/s
+fc = cut off frequency
+
+For the particular problem given here, we need to design an RWG with a cut off frequency of 6.56 GHz. The corresponding cut off wavelength is calculated by the eq. no. (1.2) and it is (λc)10 = 4.57 cm.
+
+For TE10 mode m=1 and n=0 so
+Putting these values in the equation (1.1) & solving we find that λc = 2a
+
+By calculations we know that:
+x = a = 2.286 cm
+y = b ≈ a/2 ≈ 1.143 cm
+z = length of Waveguide is any multiple of wavelength for TE10 mode, here we are taking randomly the three times multiple of wavelength so,
+z = 3 × 4.57 ≈ 14 cm.
+
+Waveguide design on HFSS:
+Waveguide type = WR90
+x = a = 2.286 cm
+y = b = 1.106 cm
+z = 14 cm
+Mode = TE10
+
+Also the same procedure is calculated for the different modes and designed for the TE20, TE01, TE02, TE11 & TM11
+
+Procedure: (For TE10 Mode)
+
+1. Draw a box on HFSS having center position (0,0,0) and x size=2.285 cm, y size=1.106 cm and z size=14 cm
+
+2. Select the faces excluding the wave port faces of this rectangular waveguide and assign the boundary finite conductivity to all surfaces.
+
+3. Assign the wave port on the two port faces and define two modes for each port.
+
+4. Create the solution setup set solution frequency add frequency sweep (set range from 3 GHz to 7 GHz with the interval of 0.01GHz)
+
+5. Validate the design and further analyze it.
+
+6. Observe the field patterns for various modes like TE10 and TE20 TE01 TE02 TE11 & TM11 modes in the Port field Display option in Project Manager.
+
+7. Plot the corresponding 'E' and 'H' field patterns.
+
+Results:
+
+
+A rectangular waveguide supports TM and TE modes but not TEM waves because we cannot define a unique voltage since there is only one conductor in a rectangular waveguide. For rectangular waveguide the dominant mode is TE10, which has the most minimal cut-off frequency. Also in rectangular waveguide TM10 & TM01 (In which one coordinate is 0) doesn't exists. For rectangular waveguide TE11 and TM11 modes shows the same existence. So here we are taking the TE10 mode as dominant modes.
+
+
+Conclusion: E-field and H-field pattern is successfully simulated for rectangular Waveguide. E-Field is maximum in center of Surface and the intensity of E-field is reduces at a corner. In H-Field pattern at center the intensity of H-field is minimum and at corner H-Field is maximum.
