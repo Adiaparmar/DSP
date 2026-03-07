@@ -1,634 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DSP Text Files</title>
-    <!-- Prism.js for syntax highlighting -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>RFS Text Files</h1>
-      <p>
-        Theory
-      </p>
 
-      <div class="topics-container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CN Text Files</title>
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-        <div class="topic-section">
-          <h2>Rectangular Waveguide</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Rectangular Waveguide.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Rectangular Waveguide.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-        <div class="topic-section">
-          <h2>Circular Waveguide</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Circular Waveguide.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Circular Waveguide.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-        <div class="topic-section">
-          <h2>Coaxial Transmission Line</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Coaxial Transmission Line.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Coaxial Transmission Line.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-        <div class="topic-section">
-          <h2>Strip Line</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Planar_Transmission_Lines(Strip_Line).txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Planar_Transmission_Lines(Strip_Line).txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-        <div class="topic-section">
-          <h2>Micro Stripline</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Planar_Transmission_Lines(Micro_Strip_Line).txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Planar_Transmission_Lines(Micro_Strip_Line).txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-        <div class="topic-section">
-          <h2>Parallel Coupled Micro Stripline</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Parallel_Coupled_Micro_Stripline.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Parallel_Coupled_Micro_Stripline.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
+<body>
+  <div class="container">
+    <h1>CN Text Files</h1>
+    <p>Each topic has two options: Copy Code and View Code.</p>
 
-        <div class="topic-section">
-          <h2>Parallel Coupled Stripline</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Parallel_Coupled_Stripline.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Parallel_Coupled_Stripline.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
+    <div class="topics-container">
 
-
-        <div class="topic-section">
-          <h2>Planar Transmission Line(Slot Line)</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Planar_Transmission_Lines(Slot_Lines).txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Planar_Transmission_Lines(Slot_Lines).txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <div class="topic-section">
-          <h2>Co Planar Transmission Line</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Co-Planar_Transmission_Lines.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-
-            <button
-              class="view-btn"
-              data-file="Co-Planar_Transmission_Lines.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <div class="topic-section">
-          <h2>3db Branch Line Coupler</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="3db_Branch_Line_Coupler.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="3db_Branch_Line_Coupler.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <div class="topic-section">
-          <h2>Wilkinson Power Divider</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Wilkinson_Power_Divider.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Wilkinson_Power_Divider.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-
-        <div class="topic-section">
-          <h2>Backward Wave Coupler</h2>
-          <div class="topic-buttons">
-            <button class="copy-btn" data-file="Backward_Wave_Coupler.txt" data-action="copy">
-              Copy TTheory
-            </button>
-            <button class="view-btn" data-file="Backward_Wave_Coupler.txt" data-action="view">
-              View Theory
-            </button>
-          </div>
-        </div>
-
-
-        <div class="topic-section">
-          <h2>Hybrid Ring (Rat Race)</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Hybrid_Ring(Rat_Race).txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Hybrid_Ring(Rat_Race).txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-
-          </div>
-        </div>
-
-        <div class="topic-section">
-          <h2>Low Pass Filter</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Low_Pass_Filter.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Low_Pass_Filter.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-
-          </div>
-        </div>
-
-        <div class="topic-section">
-          <h2>Band Pass Filter</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Band_Pass_Filter.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Band_Pass_Filter.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-
-          </div>
-        </div>
-      </div>
-    <div class="container">
-      <h1>DSP Text Files</h1>
-      <p>
-        Each topic has four options: Copy Code, Copy Theory, View Code, and View
-        Theory.
-      </p>
-
-      <div class="topics-container">
-        <!-- DFT/IDFT -->
-        <div class="topic-section">
-          <h2>DFT/IDFT</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="DFT-IDFT.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="DFT-IDFT_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="DFT-IDFT.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="DFT-IDFT_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- Z-transform -->
-        <div class="topic-section">
-          <h2>Z-transform</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="z-transform.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="z-transform_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="z-transform.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="z-transform_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- Z-transform Residue -->
-        <div class="topic-section">
-          <h2>Z-transform Residue</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="z-transform_residue.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="z-transform_residue_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="z-transform_residue.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="z-transform_residue_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- Circular Convolution -->
-        <div class="topic-section">
-          <h2>Circular Convolution</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Circular_Convolution.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="Circular_Convolution_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Circular_Convolution.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="Circular_Convolution_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- N-point FFT -->
-        <div class="topic-section">
-          <h2>N-point FFT</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="N-point_FFT.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="N-point_FFT_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="N-point_FFT.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="N-point_FFT_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- LPF-HPF Filter -->
-        <div class="topic-section">
-          <h2>LPF-HPF Filter</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="LPF-HPF_Filter.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="LPF-HPF_Filter_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="LPF-HPF_Filter.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="LPF-HPF_Filter_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- FIR Filter -->
-        <div class="topic-section">
-          <h2>FIR Filter</h2>
-          <div class="topic-buttons">
-            <button class="copy-btn" data-file="FIR.txt" data-action="copy">
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="FIR_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button class="view-btn" data-file="FIR.txt" data-action="view">
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="FIR_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
-        </div>
-
-        <!-- Auto Cross Correlation -->
-        <div class="topic-section">
-          <h2>Auto Cross Correlation</h2>
-          <div class="topic-buttons">
-            <button
-              class="copy-btn"
-              data-file="Auto_Cross_Correlation.txt"
-              data-action="copy"
-            >
-              Copy Code
-            </button>
-            <button
-              class="copy-btn"
-              data-file="Auto_Cross_Correlation_theory.txt"
-              data-action="copy"
-            >
-              Copy Theory
-            </button>
-            <button
-              class="view-btn"
-              data-file="Auto_Cross_Correlation.txt"
-              data-action="view"
-            >
-              View Code
-            </button>
-            <button
-              class="view-btn"
-              data-file="Auto_Cross_Correlation_theory.txt"
-              data-action="view"
-            >
-              View Theory
-            </button>
-          </div>
+      <!-- Directed Unweighted Graph -->
+      <div class="topic-section">
+        <h2>Directed Unweighted Graph</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="Directed Unweighted.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="Directed Unweighted.txt" data-action="view">
+            View Code
+          </button>
         </div>
       </div>
 
-      <!-- Content display area for viewing files -->
-      <div id="content-display" class="content-display hidden">
-        <div class="content-header">
-          <h3 id="content-title"></h3>
-          <div class="header-controls">
-            <button id="copy-current" class="header-btn" title="Copy Content">
-              📋
-            </button>
-            <button id="close-content" class="close-btn">×</button>
-          </div>
-        </div>
-        <div id="content-body" class="content-body">
-          <div id="theory-content" class="theory-view hidden"></div>
-          <div id="code-content" class="code-view hidden">
-            <pre
-              class="line-numbers"
-            ><code id="code-block" class="language-matlab"></code></pre>
-          </div>
+      <!-- Directed Weighted Graph -->
+      <div class="topic-section">
+        <h2>Directed Weighted Graph</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="Directed Weighted.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="Directed Weighted.txt" data-action="view">
+            View Code
+          </button>
         </div>
       </div>
 
-      <div id="status-message"></div>
+      <!-- Undirected Unweighted Graph -->
+      <div class="topic-section">
+        <h2>Undirected Unweighted Graph</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="Undirected Unweighted.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="Undirected Unweighted.txt" data-action="view">
+            View Code
+          </button>
+        </div>
+      </div>
+
+      <!-- Single Source Single Destination -->
+      <div class="topic-section">
+        <h2>Single Source Single Destination</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="Single Source Single.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="Single Source Single.txt" data-action="view">
+            View Code
+          </button>
+        </div>
+      </div>
+
+      <!-- Single Source All Destinations -->
+      <div class="topic-section">
+        <h2>Single Source All Destinations</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="Single Source All.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="Single Source All.txt" data-action="view">
+            View Code
+          </button>
+        </div>
+      </div>
+
+      <!-- M/M/1 Queue -->
+      <div class="topic-section">
+        <h2>M/M/1 Queue</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="MM1.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="MM1.txt" data-action="view">
+            View Code
+          </button>
+        </div>
+      </div>
+
+      <!-- M/M/1/N Queue -->
+      <div class="topic-section">
+        <h2>M/M/1/N Queue</h2>
+        <div class="topic-buttons">
+          <button class="copy-btn" data-file="MM1N.txt" data-action="copy">
+            Copy Code
+          </button>
+          <button class="view-btn" data-file="MM1N.txt" data-action="view">
+            View Code
+          </button>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Marked.js for markdown parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- Prism.js for syntax highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+    <!-- Content display area for viewing files -->
+    <div id="content-display" class="content-display hidden">
+      <div class="content-header">
+        <h3 id="content-title"></h3>
+        <div class="header-controls">
+          <button id="copy-current" class="header-btn" title="Copy Content">
+            📋
+          </button>
+          <button id="close-content" class="close-btn">×</button>
+        </div>
+      </div>
+      <div id="content-body" class="content-body">
+        <div id="theory-content" class="theory-view hidden"></div>
+        <div id="code-content" class="code-view hidden">
+          <pre class="line-numbers"><code id="code-block" class="language-matlab"></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div id="status-message"></div>
+  </div>
+
+  <!-- Marked.js for markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Prism.js for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>

@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <conio.h>
+
+#define N 100
+
+/*
+ Graph representation using adjacency matrix
+*/
+int Graph[N][N];
+
+/*
+ u = source vertex
+ v = destination vertex
+*/
+int vertices, edges;
+int u, v;
+int i, j;
+
+/* Function to input the graph */
+void InputGraph()
+{
+    printf("Enter vertices and edges:\n");
+    scanf("%d %d", &vertices, &edges);
+
+    // Reset graph matrix
+    for(i = 1; i <= vertices; i++)
+    {
+        for(j = 1; j <= vertices; j++)
+        {
+            Graph[i][j] = 0;
+        }
+    }
+
+    // Input edges
+    printf("Enter edges (u v):\n");
+    for(i = 1; i <= edges; i++)
+    {
+        printf("Edge-%d: ", i);
+        scanf("%d %d", &u, &v);
+
+        // Directed edge from u to v
+        Graph[u][v] = 1;
+    }
+}
+
+/* Function to print adjacency matrix */
+void PrintGraph()
+{
+    printf("\nAdjacency Matrix of Directed Graph:\n");
+
+    for(i = 1; i <= vertices; i++)
+    {
+        for(j = 1; j <= vertices; j++)
+        {
+            printf("%d\t", Graph[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+/* Main function */
+void main()
+{
+    clrscr();
+
+    printf("Directed Unweighted Graph\n");
+    printf("=========================\n\n");
+
+    InputGraph();
+    PrintGraph();
+
+    getch();
+}

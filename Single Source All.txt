@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <conio.h>
+
+#define infinity 999
+
+/* Function prototype */
+void dij(int n, int v, int cost[10][10], int dis[10]);
+
+void main()
+{
+    int v, n, i, j;
+    int cost[10][10], dis[10];
+
+    clrscr();
+
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    printf("\nEnter the cost matrix:\n");
+
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            printf("cost[%d][%d] = ", i, j);
+            scanf("%d", &cost[i][j]);
+        }
+    }
+
+    printf("\nAdjacency Matrix for Undirected Weighted Graph:\n");
+
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            printf("\t%d", cost[i][j]);
+        }
+        printf("\n");
+    }
+
+    /* Replace 0 with infinity */
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= n; j++)
+        {
+            if(cost[i][j] == 0)
+                cost[i][j] = infinity;
+        }
+    }
+
+    printf("\nEnter the source vertex: ");
+    scanf("%d", &v);
+
+    dij(n, v, cost, dis);
+
+    printf("\nShortest Paths:\n");
+
+    for(i = 1; i <= n; i++)
+    {
+        if(i != v)
+        {
+            printf("%d -> %d  Cost = %d\n", v, i, dis[i]);
+        }
+    }
+
+    getch();
+}
+
+
+/* Function definition for Dijkstra's Algorithm */
+void dij(int n, int v, int cost[10][10], int dis[10])
+{
+    int i, u, count, w;
+    int flag[10];
+    int min;
+
+    for(i = 1; i <= n; i++)
+    {
+        flag[i] = 0;
+        dis[i] = cost[v][i];
+    }
+
+    count = 2;
+
+    while(count <= n)
+    {
+        min = 99;
+
+        for(w = 1; w <= n; w++)
+        {
+            if(dis[w] < min && !flag[w])
+            {
+                min = dis[w];
+                u = w;
+            }
+        }
+
+        flag[u] = 1;
+        count++;
+
+        for(w = 1; w <= n; w++)
+        {
+            if((dis[u] + cost[u][w] < dis[w]) && !flag[w])
+            {
+                dis[w] = dis[u] + cost[u][w];
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+function e = exponential(mean)
+    e = exprnd(mean);
+end
+
+% M/M/1/N Queue Simulation
+
+N = 20;                 % Maximum system capacity (including server)
+queue_limit = N - 1;    % Max queue length
+service_mean_time = 0.01;
+arrival_mean_time = 0.008;
+
+sim_packets = 750;
+
+sim_time = 0;
+server_status = 0;
+queue_size = 0;
+
+num_in_system = 0;
+num_blocked = 0;
+
+time_last_event = 0;
+time_in_queue = 0;
+time_in_server = 0;
+
+total_delay = 0;
+
+time_next_event(1) = sim_time + exponential(arrival_mean_time);
+time_next_event(2) = inf;
+
+while(num_in_system < sim_packets)
+
+    % Find next event
+    [min_time_next_event, type_of_event] = min(time_next_event);
+
+    sim_time = min_time_next_event;
+
+    time_since_last_event = sim_time - time_last_event;
+    time_last_event = sim_time;
+
+    time_in_queue = time_in_queue + queue_size * time_since_last_event;
+    time_in_server = time_in_server + server_status * time_since_last_event;
+
+    % ---------------- Arrival Event ----------------
+
+    if(type_of_event == 1)
+
+        time_next_event(1) = sim_time + exponential(arrival_mean_time);
+
+        if(num_in_system >= N)
+
+            % System full → packet dropped
+            num_blocked = num_blocked + 1;
+
+        else
+
+            num_in_system = num_in_system + 1;
+
+            if(server_status == 1)
+
+                queue_size = queue_size + 1;
+                arr_time(queue_size) = sim_time;
+
+            else
+
+                server_status = 1;
+                time_next_event(2) = sim_time + exponential(service_mean_time);
+
+            end
+
+        end
+
+
+    % ---------------- Departure Event ----------------
+
+    elseif(type_of_event == 2)
+
+        num_in_system = num_in_system - 1;
+
+        if(queue_size == 0)
+
+            server_status = 0;
+            time_next_event(2) = inf;
+
+        else
+
+            queue_size = queue_size - 1;
+
+            delay = sim_time - arr_time(1);
+            total_delay = total_delay + delay;
+
+            time_next_event(2) = sim_time + exponential(service_mean_time);
+
+            for i = 1:queue_size
+                arr_time(i) = arr_time(i+1);
+            end
+
+        end
+
+    end
+
+end
+
+
+% ------------ Results ------------
+
+utilization = time_in_server / sim_time;
+avg_queue_length = time_in_queue / sim_time;
+blocking_probability = num_blocked / (num_blocked + num_in_system);
+
+disp(['Server Utilization: ', num2str(utilization)]);
+disp(['Average Queue Length: ', num2str(avg_queue_length)]);
+disp(['Blocking Probability: ', num2str(blocking_probability)]);
