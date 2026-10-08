@@ -1,0 +1,30 @@
+carrierFreq = 3e9;
+numerologyIndex = 2;
+
+subcarrierSpacingConfig = [15 30 60 120 240];
+
+if numerologyIndex >= 0 && numerologyIndex <= 3
+    subcarrierSpacing = ...
+        subcarrierSpacingConfig(numerologyIndex + 1);
+else
+    subcarrierSpacing = ...
+        subcarrierSpacingConfig(numerologyIndex - 3);
+end
+
+disp(['Numerology Index: ' num2str(numerologyIndex)]);
+disp(['Subcarrier Spacing: ' ...
+    num2str(subcarrierSpacing) ' kHz']);
+
+subcarrierSpacingHz = subcarrierSpacing * 1e3;
+
+figure;
+
+stem(0:subcarrierSpacingHz: ...
+    carrierFreq-subcarrierSpacingHz, ...
+    'filled','LineWidth',2);
+
+xlabel('Frequency (Hz)');
+ylabel('Subcarrier Index');
+
+title(['5G NR Subcarrier Spacing for Numerology ' ...
+    num2str(numerologyIndex)]);

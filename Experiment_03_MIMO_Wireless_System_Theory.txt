@@ -1,0 +1,13 @@
+Experiment 3: MIMO Wireless System Design for 5G using MATLAB
+
+Theory
+
+Multiple-Input Multiple-Output (MIMO) is a wireless communication technique that uses multiple transmitting and receiving antennas to transfer information over the same wireless channel. MIMO introduces a spatial dimension into communication and can improve data rate, reliability, and coverage. It is an important technology in 5G systems because multiple antennas allow several spatial data streams to be transmitted and received.
+
+MIMO makes use of multipath propagation. In a wireless environment, transmitted signals can reflect from walls, ceilings, buildings, and other objects before reaching the receiver. The signals may arrive at different angles and at slightly different times. Although multipath was traditionally considered harmful because it can produce interference and fading, MIMO uses multiple antennas to exploit the different propagation paths.
+
+Two important benefits of MIMO are spatial multiplexing and spatial diversity. Spatial multiplexing allows independent data streams to be transmitted simultaneously, increasing the potential data rate. Spatial diversity uses multiple observations of the transmitted signal to improve reliability and reduce the effect of fading. The number of usable spatial streams is related to the antenna configuration and channel conditions.
+
+In the MATLAB experiment, random binary data is generated and modulated using BPSK. A MIMO channel matrix with complex Gaussian coefficients represents a Rayleigh fading channel. Noise is added to the received signal according to the selected signal-to-noise ratio. The receiver then detects the transmitted symbols and compares them with the original data.
+
+The main performance measure is Bit Error Rate (BER). BER represents the fraction of incorrectly detected bits. A lower BER indicates better communication performance. Thus, the experiment demonstrates the basic operation of a MIMO wireless system and shows how antenna diversity and channel conditions influence communication reliability.

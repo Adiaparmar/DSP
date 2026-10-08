@@ -1,0 +1,90 @@
+clc; clear; close all;
+
+carrier = nrCarrierConfig;
+carrier.NCellID = 1;
+carrier.SubcarrierSpacing = 120;
+carrier.NSizeGrid = 66;
+
+fc = 28e9;
+disp('--- 5G NR Carrier Configuration ---');
+disp(carrier);
+
+c = physconst('LightSpeed');
+lambda = c/fc;
+
+N = 8;
+d = lambda/2;
+
+fprintf('Wavelength : %.4f mm\n',lambda*1e3);
+fprintf('Element Spacing : %.4f mm\n',d*1e3);
+fprintf('Number of elements : %d\n',N);
+
+steerAngles = [0 30 -45];
+theta = -90:0.1:90;
+
+figure('Name','Cartesian Beam Pattern');
+hold on; grid on;
+
+legendEntries = strings(1,length(steerAngles));
+
+for k = 1:length(steerAngles)
+    theta0 = steerAngles(k);
+    n = (0:N-1).';
+
+    w = exp(1j*2*pi*d/lambda*n*sind(theta0));
+    AF = zeros(1,length(theta));
+
+    for m = 1:length(theta)
+        sv = exp(1j*2*pi*d/lambda*n*sind(theta(m)));
+        AF(m) = w' * sv;
+    end
+
+    AFdB = 20*log10(abs(AF)/N + eps);
+    plot(theta,AFdB,'LineWidth',1.5);
+
+    legendEntries(k) = sprintf('Steering angle = %d deg',theta0);
+
+    [peakVal,peakIdx] = max(AFdB);
+    peakAngle = theta(peakIdx);
+    above3dB = theta(AFdB >= peakVal-3);
+    bw3dB = max(above3dB) - min(above3dB);
+
+    fprintf('Steer %d deg -> Peak angle = %.1f deg, 3dB Beamwidth = %.1f deg\n', ...
+        theta0,peakAngle,bw3dB);
+end
+
+xlabel('Angle (degrees)');
+ylabel('Normalized Array Factor');
+title(sprintf('8-Element ULA Beam Pattern at %.0f GHz',fc/1e9));
+ylim([-40 0]);
+xlim([-90 90]);
+legend(legendEntries,'Location','southoutside');
+
+theta0 = 30;
+w = exp(1j*2*pi*d/lambda*n*sind(theta0));
+AF = zeros(1,length(theta));
+
+for m = 1:length(theta)
+    sv = exp(1j*2*pi*d/lambda*n*sind(theta(m)));
+    AF(m) = w' * sv;
+end
+
+AFdB = 20*log10(abs(AF)/N + eps);
+AFdB_clip = max(AFdB,-40);
+
+figure('Name','Polar Beam Pattern');
+polarplot(deg2rad(theta),AFdB_clip,'LineWidth',1.5);
+title(sprintf('Polar Beam Pattern (Steered to %d deg)',theta0));
+
+Nvec = 1:16;
+gain_dB = 10*log10(Nvec);
+
+figure('Name','Beamforming Gain vs N');
+plot(Nvec,gain_dB,'o-','LineWidth',1.5);
+grid on;
+xlabel('Number of Antenna Elements (N)');
+ylabel('Beamforming (SNR) Gain (dB)');
+title('Theoretical Beamforming Gain vs Array Size');
+
+fprintf('\nBeamforming gain for N=%d elements: %.2f dB\n', ...
+    N,10*log10(N));

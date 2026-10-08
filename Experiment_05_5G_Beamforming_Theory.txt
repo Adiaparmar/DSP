@@ -1,0 +1,13 @@
+Experiment 5: 5G Beamforming Design
+
+Theory
+
+Beamforming is a multi-antenna transmission technique used to control the direction and strength of a wireless signal. Modern wireless systems use spatial processing to improve data throughput and link quality, particularly in environments where multiple propagation paths are present. Beamforming uses precoding and combining weights derived from the channel so that transmitted signals add constructively in desired directions.
+
+The weights contain magnitude and phase information. By applying suitable phase relationships between antenna elements, the array can steer its main radiation beam toward a desired direction. This directional transmission can improve received signal strength and signal-to-noise ratio while reducing unwanted radiation in other directions.
+
+Beamforming is especially important at millimeter-wave frequencies used by many 5G systems. At these frequencies, the wavelength is small, so many antenna elements can be placed within a relatively small physical area. However, providing a separate radio-frequency transceiver chain for every antenna element can be expensive and power intensive. Therefore, practical systems can use multiple antenna elements connected through a smaller number of RF chains. Analog phase shifters can provide additional steering capability.
+
+The experiment uses an antenna array and calculates its array response for different steering angles. The wavelength is obtained from the carrier frequency, and the antenna-element spacing is selected relative to the wavelength. The array factor is then calculated as a function of angle. The resulting Cartesian and polar patterns show the main beam and its steering direction.
+
+The experiment also examines theoretical beamforming gain as the number of antenna elements increases. The gain follows the relationship 10 log10(N) dB for an N-element array under the simplified assumptions used. Therefore, increasing the number of antenna elements can provide higher directional gain. The experiment demonstrates the relationship between antenna arrays, phase control, beam direction, and beamforming gain in 5G systems.

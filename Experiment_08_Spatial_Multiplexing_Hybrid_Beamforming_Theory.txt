@@ -1,0 +1,15 @@
+Experiment 8: Spatial Multiplexing and Hybrid Beamforming for 5G Wireless Communications
+
+Theory
+
+The increasing demand for high data rates and greater user capacity requires efficient use of the available radio spectrum. Multi-user MIMO improves spectral efficiency by allowing a base station to communicate with multiple mobile stations using the same time-frequency resources. With massive MIMO, a base station can contain tens or hundreds of antenna elements, allowing many spatial data streams to be supported.
+
+Spatial multiplexing uses the spatial dimension of a MIMO channel to transmit multiple independent streams simultaneously. Instead of using separate time or frequency resources for every stream, several streams can share the same resources when the channel provides sufficient spatial separation. The technique can significantly increase capacity, but it requires suitable channel knowledge and signal processing.
+
+Hybrid beamforming, also called hybrid precoding, is used to implement large antenna arrays without requiring one dedicated RF chain for every antenna element. In a fully digital architecture, each antenna generally requires its own RF chain, which increases hardware cost and power consumption. In hybrid beamforming, each data stream is associated with an RF chain and the RF-chain outputs are combined through analog gains and phase shifters.
+
+The analog beamformer, represented by an RF precoding matrix, connects a relatively small number of RF chains to a much larger antenna array. The number of antennas is therefore much greater than the number of independent streams or RF chains. This architecture provides a compromise between the flexibility of digital beamforming and the lower hardware complexity of analog processing.
+
+The experiment configures a large uniform rectangular antenna array and evaluates its radiation response. The resulting three-dimensional pattern illustrates the directional beam formed by the array. Steering and antenna spacing determine the direction and shape of the main beam.
+
+Thus, the experiment demonstrates how spatial multiplexing increases capacity and how hybrid beamforming makes large 5G antenna arrays more practical by reducing the required number of RF chains.

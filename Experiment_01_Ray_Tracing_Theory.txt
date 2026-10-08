@@ -1,0 +1,11 @@
+Experiment 1: 5G Communications Link Analysis with Ray Tracing using MATLAB
+
+Theory
+
+Ray tracing is a propagation analysis technique used to study communication links and coverage in realistic environments containing buildings and terrain. In a 5G urban scenario, especially at higher frequencies such as 28 GHz, obstacles and material interactions can strongly influence the received signal. MATLAB can import and visualize three-dimensional building data in Site Viewer and then use a transmitter, receiver, and ray-tracing propagation model to analyze the communication link.
+
+The experiment considers a small-cell transmitter serving a neighborhood in a crowded urban environment. The transmitter is configured at a 28 GHz carrier frequency and is positioned above the ground. A receiver is placed at a location that may be blocked by buildings, creating a non-line-of-sight condition. The line-of-sight path can first be checked to understand whether a direct path exists.
+
+The ray-tracing model uses the shooting and bouncing rays (SBR) technique to determine possible propagation paths. These paths may include direct and reflected components. Propagation loss is influenced by free-space path loss as well as interactions with buildings and terrain. Material properties are therefore important because different surfaces produce different reflection and propagation behavior.
+
+The experiment compares received signal strength under different material assumptions. MATLAB functions such as raytrace and sigstrength help visualize propagation paths and calculate received power. By changing parameters such as the number of reflections and building or terrain material, the effect on the communication link can be observed. Thus, ray tracing provides a useful method for studying 5G coverage, received power, propagation paths, and the influence of the urban environment on link performance.

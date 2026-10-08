@@ -1,0 +1,54 @@
+clc;
+clear;
+
+numFrameSimulation = 100;
+simTime = numFrameSimulation * 1e-2;
+
+% Define gNB parameters
+gNB.TransmitPower = 34;
+gNB.CarrierFrequency = 2.6e9;
+gNB.ChannelBandwidth = 5e6;
+
+% Define UE positions and transmit power
+uePositions = [300 -400 0; 700 700 0; -1000 500 0; -1000 -500 0];
+
+numUE = size(uePositions,1);
+UEs(numUE).Position = [];
+
+for p = 1:numUE
+    UEs(p).Position = uePositions(p,:);
+    UEs(p).TransmitPower = 23;
+    UEs(p).TrafficModel = 'Full Buffer';
+end
+
+% Simulate basic connection (mock logic)
+disp('Connecting UEs to gNB')
+
+for p = 1:numUE
+    distance = norm(UEs(p).Position);
+    pathLoss_dB = 32.4 + 20*log10(distance/1000) + ...
+        20*log10(gNB.CarrierFrequency/1e6);
+
+    rxPower_dBm = gNB.TransmitPower - pathLoss_dB;
+    UEs(p).RxPower_dBm = rxPower_dBm;
+end
+
+% Simulate statistics
+gNBStats.ConnectedUEs = numUE;
+gNBStats.TotalTrafficMB = numUE * 2 * simTime;
+
+for p = 1:numUE
+    ueStats(p).AvgRxPower = UEs(p).RxPower_dBm;
+    ueStats(p).ThroughputMbps = 2 + rand();
+end
+
+% Display stats
+disp('gNB statistics:')
+disp(gNBStats)
+
+disp('UE statistics:')
+
+for p = 1:numUE
+    fprintf('UE %d: RxPower = %.2f dBm, Throughput = %.2f Mbps\n', ...
+        p, ueStats(p).AvgRxPower, ueStats(p).ThroughputMbps);
+end

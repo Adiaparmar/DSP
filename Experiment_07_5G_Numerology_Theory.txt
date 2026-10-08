@@ -1,0 +1,13 @@
+Experiment 7: Implement Numerology or Subcarrier Spacing in 5G
+
+Theory
+
+Numerology in 5G NR refers to the set of waveform parameters associated mainly with subcarrier spacing and cyclic prefix configuration. Unlike earlier cellular systems with a largely fixed numerology, 5G supports multiple subcarrier spacings so that the radio interface can be adapted to different deployment conditions and service requirements.
+
+The baseband carrier waveform can contain multiple subcarrier-spacing carriers and bandwidth parts (BWPs). A bandwidth part is a set of contiguous resources that share a numerology on a particular subcarrier-spacing carrier. In MATLAB, uplink carrier and BWP configurations can be represented using configuration objects. Parameters include the carrier bandwidth, cell ID, waveform length, windowing, sample rate, and carrier frequency.
+
+The standard subcarrier spacings considered in the experiment are 15, 30, 60, 120, and 240 kHz. These values correspond to the basic 5G NR numerology relationship in which subcarrier spacing increases by powers of two. A larger subcarrier spacing produces shorter OFDM symbol duration and therefore shorter slot duration. This can reduce transmission latency and make the waveform suitable for applications requiring faster scheduling.
+
+The experiment assigns a numerology index and selects the corresponding subcarrier spacing from a predefined configuration array. The selected value is converted from kilohertz to hertz and used to generate a frequency-axis representation of the subcarriers. The resulting plot shows the relationship between subcarrier index and frequency.
+
+The experiment demonstrates that subcarrier spacing directly determines the frequency separation between adjacent OFDM subcarriers. It also shows why 5G needs multiple numerologies: different services and frequency ranges may require different time-frequency characteristics. Thus, numerology provides flexibility in designing 5G NR waveforms and resource allocation.

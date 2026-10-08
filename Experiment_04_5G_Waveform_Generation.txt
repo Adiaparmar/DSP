@@ -1,0 +1,24 @@
+waveconfig = nrDLCarrierConfig;
+
+[waveform,waveformInfo] = nrWaveformGenerator(waveconfig);
+
+% Plot spectrogram of waveform for first antenna port
+sampleRate = waveformInfo.ResourceGrids(1).Info.SampleRate;
+nfft = waveformInfo.ResourceGrids(1).Info.Nfft;
+
+figure;
+spectrogram(waveform(:,1),ones(nfft,1),0,nfft, ...
+    'centered',sampleRate,'yaxis','MinThreshold',-130);
+title('Spectrogram of 5G Downlink Baseband Waveform');
+
+waveconfig.PDSCH{1}.PRBSet = 0:10;
+
+[waveform,waveformInfo] = nrWaveformGenerator(waveconfig);
+
+sampleRate = waveformInfo.ResourceGrids(1).Info.SampleRate;
+nfft = waveformInfo.ResourceGrids(1).Info.Nfft;
+
+figure;
+spectrogram(waveform(:,1),ones(nfft,1),0,nfft, ...
+    'centered',sampleRate,'yaxis','MinThreshold',-130);
+title('Spectrogram of 5G Downlink Baseband Waveform');

@@ -1,0 +1,47 @@
+clc;
+clear;
+close all;
+
+% Define carrier configuration
+carrier = nrCarrierConfig;
+carrier.NCellID = 1;
+carrier.SubcarrierSpacing = 30;
+carrier.CyclicPrefix = 'normal';
+carrier.NSizeGrid = 52;
+
+% Display frame structure parameters
+fprintf('Subcarrier Spacing: %d kHz\n',carrier.SubcarrierSpacing);
+fprintf('Slots per Subframe: %d\n',carrier.SlotsPerSubframe);
+fprintf('Slots per Frame: %d\n',carrier.SlotsPerFrame);
+fprintf('Resource Blocks: %d\n',carrier.NSizeGrid);
+
+% Generate empty resource grid (1 slot)
+grid = nrResourceGrid(carrier);
+
+[nSubcarriers,nSymbols,nAntennas] = size(grid);
+
+fprintf('Resource Grid Size: %d subcarriers x %d symbols\n', ...
+    nSubcarriers,nSymbols);
+
+grid(:,:,1) = complex(randn(nSubcarriers,nSymbols), ...
+    randn(nSubcarriers,nSymbols));
+
+figure;
+imagesc(abs(grid(:,:,1)));
+
+xlabel('OFDM Symbol Index (Time -->)');
+ylabel('Subcarrier Index (Frequency -->)');
+title('5G NR Resource Grid (1 Slot) - Frame Structure');
+colorbar;
+
+fprintf('\n--- Effect of Numerology ---\n');
+
+SCS_values = [15 30 60 120];
+
+for SCS = SCS_values
+    c = nrCarrierConfig;
+    c.SubcarrierSpacing = SCS;
+
+    fprintf('SCS = %d kHz -> Slots/Subframe = %d, Slot duration = %.3f ms\n', ...
+        SCS,c.SlotsPerSubframe,1e3/(c.SlotsPerSubframe));
+end

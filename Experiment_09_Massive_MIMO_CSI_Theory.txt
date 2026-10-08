@@ -1,0 +1,15 @@
+Experiment 9: Massive MIMO System Implementation with CSI
+
+Theory
+
+Massive MIMO extends conventional MIMO by using a large number of antenna elements at the base station. It is an important technique for increasing spectral efficiency, supporting multiple users, improving link reliability, and enabling spatial multiplexing. The performance of a MIMO system depends strongly on knowledge of the wireless channel between the transmitter and receiver.
+
+Channel State Information (CSI) describes the characteristics of the propagation channel. CSI allows the transmitter or receiver to understand how signals are affected by the channel and to select suitable processing such as precoding, beamforming, and equalization. In a MIMO system, the channel can be represented by a matrix whose elements describe the complex channel coefficients between antenna pairs.
+
+Spatial multiplexing uses MIMO to transmit multiple layers of data. The maximum number of independent layers is limited by the smaller of the number of transmit and receive antennas and by the rank of the channel. After layer mapping, precoding maps the transmission layers to antenna ports using a precoding matrix.
+
+The experiment uses pilot-based channel estimation. Pilot signals are known reference signals transmitted through the channel. At the receiver, these signals are used to estimate the channel. The experiment uses Least Squares (LS) estimation to obtain a channel estimate. Data symbols are then transmitted through the estimated channel, noise is added, and the received signals are equalized.
+
+The data uses QAM modulation, and the final performance is evaluated using Bit Error Rate (BER). BER is calculated by comparing the original transmitted symbols with the demodulated symbols after reception.
+
+The experiment therefore demonstrates the complete basic concept of CSI-assisted massive MIMO: generate a channel, transmit pilots, estimate the channel, transmit data, perform receiver processing, and evaluate errors. Accurate CSI is important because imperfect channel knowledge can reduce the effectiveness of precoding, beamforming, and equalization.

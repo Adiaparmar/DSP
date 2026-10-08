@@ -147,7 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function isTheoryFile(fileName) {
-    return fileName.includes("_theory") || fileName.includes("theory");
+    const lower = fileName.toLowerCase();
+    return lower.includes("_theory") || lower.includes("theory");
   }
 
   function displayContent(fileName, content) {

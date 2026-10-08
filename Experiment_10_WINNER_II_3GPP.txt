@@ -1,0 +1,55 @@
+s = rng(61);
+
+prm.numUsers = 1;
+prm.numSTS = 16;
+prm.numTx = 32;
+prm.numRx = 16;
+
+prm.bitsPerSubCarrier = 6;
+prm.numDataSymbols = 10;
+
+prm.fc = 4e9;
+prm.chanSRate = 100e6;
+prm.ChanType = 'WINNER';
+prm.NFig = 5;
+
+prm.posTx = [0;0;0];
+prm.mobileRange = 300;
+prm.mobileAngle = [33;0];
+prm.steeringAngle = [30;-20];
+prm.enSteering = true;
+
+prm.FFTLength = 256;
+prm.CyclicPrefixLength = 64;
+prm.numCarriers = 234;
+
+prm.NumGuardBandCarriers = [7 6];
+prm.PilotCarrierIndices = [26 54 90 118 140 168 204 232];
+
+nonDataIdx = [ ...
+    (1:prm.NumGuardBandCarriers(1))'; ...
+    prm.FFTLength/2+1; ...
+    (prm.FFTLength-prm.NumGuardBandCarriers(2)+1:prm.FFTLength)'; ...
+    prm.PilotCarrierIndices.'; ...
+];
+
+prm.CarriersLocations = ...
+    setdiff((1:prm.FFTLength)',sort(nonDataIdx));
+
+numTx = prm.numTx;
+numRx = prm.numRx;
+numSTS = prm.numSTS;
+
+prm.numFrmBits = ...
+    numSTS*prm.numDataSymbols*prm.numCarriers* ...
+    prm.bitsPerSubCarrier*1/3-6;
+
+prm.modMode = 2^prm.bitsPerSubCarrier;
+
+prm.numPadZeros = ...
+    3*(prm.FFTLength+prm.CyclicPrefixLength);
+
+prm.numSTSVec = numSTS;
+
+[isTxURA,expFactorTx,isRxURA,expFactorRx] = ...
+    helperArrayInfo(prm,true);

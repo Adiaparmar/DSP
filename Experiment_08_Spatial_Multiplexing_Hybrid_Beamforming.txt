@@ -1,0 +1,47 @@
+s = rng(67);
+
+% 5G communication parameters
+prm.fc = 28e9;
+prm.chanSRate = 100e6;
+prm.ChanType = 'Scattering';
+prm.NFig = 8;
+prm.nRays = 500;
+
+% Modulation
+prm.bitsPerSubCarrier = 4;     % 16-QAM
+prm.numDataSymbols = 10;
+
+% Multi-user spatial multiplexing
+prm.numSTSVec = [4 3 2 4 3];
+prm.numSTS = sum(prm.numSTSVec);
+
+% 128 BS antennas
+prm.numTx = prm.numSTS * 8;
+
+% User grouping
+prm.groups = [1 1 1 2 2];
+prm.numSTSVecAll = prm.numSTSVec;
+prm.numUsers = length(prm.numSTSVec);
+prm.numGroups = max(prm.groups);
+numGroups = prm.numGroups;
+
+% Additional scattering streams
+if strcmp(prm.ChanType,'Scattering')
+    for g = 1:numGroups
+        prm.groups(prm.numUsers+g) = g;
+        prm.numSTSVecAll(prm.numUsers+g) = 2;
+    end
+end
+
+c = physconst('LightSpeed');
+lambda = c/prm.fc;
+
+% 8 x 16 = 128 antenna array
+prm.array = phased.URA( ...
+    'Size',[8 16], ...
+    'ElementSpacing',[lambda/2 lambda/2]);
+
+figure;
+pattern(prm.array,prm.fc,'Type','powerdb', ...
+    'Normalize',true, ...
+    'CoordinateSystem','polar');

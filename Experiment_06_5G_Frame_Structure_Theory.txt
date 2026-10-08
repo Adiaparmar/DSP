@@ -1,0 +1,15 @@
+Experiment 6: Frame Structure of 5G Technology
+
+Theory
+
+The 5G New Radio frame structure defines how radio resources are organized in time and frequency. A 5G waveform is divided into frames, subframes, slots, and OFDM symbols. The flexible structure of 5G allows the system to support different services and numerologies by changing the subcarrier spacing and corresponding slot duration.
+
+This experiment focuses on parameterizing and generating a physical random access channel (PRACH) waveform for a single carrier. PRACH is used by user equipment to initiate random access to the network. The experiment follows the 5G NR physical-layer concept and demonstrates how a PRACH configuration can be represented and visualized in MATLAB.
+
+The waveform configuration contains parameters such as the number of generated subframes, display options for the resource grid, windowing, and carrier configuration. A 1 ms subframe is used as a basic time unit in the configuration. The carrier object contains parameters such as subcarrier spacing and the size of the carrier resource grid.
+
+The PRACH configuration specifies parameters including frequency range, duplex mode, configuration index, subcarrier spacing, frequency index, time index, and active PRACH slot. These settings determine where and when PRACH transmission occasions occur. The allocated PRACH preambles and power scaling can also be configured.
+
+MATLAB can then generate the corresponding time-domain waveform and resource-grid information. The generated resource grid provides a visual representation of the positions of the PRACH preambles and other configured resources.
+
+The frame structure is closely related to numerology. Increasing subcarrier spacing results in shorter OFDM symbol durations and shorter slots, allowing faster scheduling. This flexibility helps 5G support different requirements such as high data-rate services and low-latency communication. The experiment therefore demonstrates how MATLAB can be used to configure, generate, and visualize an important part of the 5G NR frame structure.

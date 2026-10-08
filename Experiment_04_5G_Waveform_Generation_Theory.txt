@@ -1,0 +1,15 @@
+Experiment 4: 5G Waveforms Generation using MATLAB
+
+Theory
+
+A 5G waveform is the baseband signal used to carry information through the wireless communication system. The waveform contains the required channels, signals, modulation, resource allocation, and OFDM structure. MATLAB provides a programmatic method for configuring and generating 5G New Radio (NR) waveforms through configuration objects and waveform-generation functions.
+
+The experiment uses the nrDLCarrierConfig configuration object to define a downlink carrier. Instead of manually specifying every waveform parameter, the configuration object provides a structured representation of the complete waveform specification. The configuration can also be created or modified using the 5G Waveform Generator app and exported as MATLAB code.
+
+The nrWaveformGenerator function uses the configured carrier information to generate a time-domain 5G downlink baseband waveform. The generated waveform is accompanied by waveform information, which contains details such as the sample rate and FFT size of the resource grid. These parameters are useful for analyzing the frequency-domain characteristics of the generated signal.
+
+A spectrogram is used in the experiment to visualize how signal power is distributed over time and frequency. The first antenna-port waveform is selected and passed to the spectrogram function. The resulting plot shows the frequency components of the 5G downlink signal.
+
+The experiment also modifies the PDSCH allocation by assigning a group of physical resource blocks (PRBs). A second waveform is then generated and its spectrogram is plotted. This makes it possible to observe how resource allocation changes the frequency-domain appearance of the waveform.
+
+Waveform generation is important because it connects the logical 5G configuration with an actual time-domain signal suitable for further channel, transmitter, receiver, and performance analysis. The experiment therefore demonstrates how MATLAB can configure, generate, and visualize a 5G NR waveform.

@@ -1,0 +1,15 @@
+Experiment 10: Implement WINNER II 5G Channel Model and 3GPP
+
+Theory
+
+MIMO-OFDM systems are widely used in modern wireless communication systems because they provide robustness against frequency-selective channels while supporting high data rates. As the number of antenna elements and allocated subcarriers increases, realistic channel modeling becomes increasingly important for evaluating system performance. Channel models reproduce the spatial and propagation behavior that a wireless signal experiences between transmitter and receiver.
+
+This experiment considers an asymmetric single-user MIMO-OFDM system in which a base station communicates with a mobile user through a point-to-point link. The system can support multiple transmit and receive antenna elements and several independent data streams. The antenna locations and antenna radiation patterns are incorporated into the spatial channel model.
+
+The experiment provides spatially defined channel-model options, including the WINNER II channel model and a scattering-based model. Such models account for the spatial locations of the transmitter and receiver as well as their antenna characteristics. The selected model is used to represent the propagation environment for the MIMO-OFDM link.
+
+An important concept in the experiment is channel sounding. In a spatially multiplexed system, the transmitter needs channel information to calculate suitable precoding or beamforming weights. During channel sounding, a known reference or preamble is transmitted across the antenna elements. The receiver processes the received signal and estimates the channel. Frequency-domain channel estimation can then be performed for the individual OFDM subcarriers.
+
+The receiver can calculate feedback weights using channel diagonalization based on Singular Value Decomposition (SVD). These weights help concentrate signal energy in useful spatial directions and can improve link performance.
+
+The MATLAB configuration specifies parameters such as carrier frequency, sampling rate, antenna counts, number of streams, OFDM FFT length, cyclic prefix length, guard-band carriers, pilot carriers, and steering angle. The experiment ultimately demonstrates spatial antenna geometry and a 3D directivity pattern while illustrating the importance of realistic channel models in 5G system design.

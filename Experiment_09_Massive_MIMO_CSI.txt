@@ -1,0 +1,60 @@
+% Define system parameters
+numAntennas = 6;
+numUsers = 4;
+numSamples = 10;
+
+SNR_dB = 20;
+SNR = 10^(SNR_dB/10);
+noisePower = 1/SNR;
+
+modOrder = 4;
+
+% Generate random channel coefficients
+H = (randn(numAntennas,numUsers,numSamples) + ...
+    1i*randn(numAntennas,numUsers,numSamples)) / sqrt(2);
+
+% Generate random pilot signals
+pilotSignals = (randn(numUsers,numSamples) + ...
+    1i*randn(numUsers,numSamples)) / sqrt(2);
+
+% Receive pilot signals and estimate channel using LS estimation
+channelEstimate = zeros(numAntennas,numUsers,numSamples);
+
+for t = 1:numSamples
+    channelEstimate(:,:,t) = ...
+        H(:,:,t) / pilotSignals(:,1:numUsers)';
+end
+
+% Generate random data symbols
+dataSymbols = randi([0 modOrder-1],numUsers,numSamples);
+
+modulatedSymbols = qammod(dataSymbols,modOrder, ...
+    'UnitAveragePower',true);
+
+% Transmit data symbols through estimated channel
+receivedSymbols = zeros(numAntennas,numSamples);
+
+for t = 1:numSamples
+    receivedSymbols(:,t) = ...
+        sum(bsxfun(@times,channelEstimate(:,:,t), ...
+        modulatedSymbols(:,t)'),2) + ...
+        sqrt(noisePower) * ...
+        (randn(numAntennas,1) + ...
+         1i*randn(numAntennas,1));
+end
+
+% Equalization at receiver
+equalizedSymbols = zeros(numUsers,numSamples);
+
+for t = 1:numSamples
+    equalizedSymbols(:,t) = ...
+        H(:,:,t)' * receivedSymbols(:,t);
+end
+
+demodulatedSymbols = qamdemod(equalizedSymbols,modOrder, ...
+    'UnitAveragePower',true);
+
+BER = sum(sum(dataSymbols ~= demodulatedSymbols)) / ...
+    (numUsers*numSamples);
+
+disp(['Bit Error Rate (BER): ' num2str(BER)]);

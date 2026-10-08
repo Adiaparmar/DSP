@@ -1,0 +1,13 @@
+Experiment 2: 5G Wireless LAN Connectivity using MATLAB
+
+Theory
+
+A wireless network is a communication network in which information is exchanged between devices over a wireless channel. The network involves different protocol layers and components, including the application layer, medium access control (MAC), physical (PHY), and radio-frequency (RF) signals. Wireless networks can be represented using nodes and links, where nodes represent communicating devices and links represent their wireless connections.
+
+5G wireless LAN connectivity requires careful consideration of coverage, range, interference, capacity, bandwidth, Quality of Service (QoS), and scalability. A practical wireless system must be designed so that users can maintain reliable connections while achieving acceptable throughput and latency. Interference and channel conditions can also affect the quality of the connection and the achievable data rate.
+
+MATLAB provides tools for exploring wireless-network behavior through simulation and visualization. In this experiment, a 5G wireless LAN scenario is considered with a base station or gNB and multiple user equipment devices. Important parameters include transmitter power, carrier frequency, channel bandwidth, user positions, and traffic conditions. These parameters allow the behavior of the network to be represented and basic connectivity statistics to be studied.
+
+The performance of a wireless LAN can be evaluated using parameters such as received power, throughput, latency, and packet error rate. Channel conditions such as multipath propagation and interference can cause changes in received signal quality and therefore affect throughput. Beamforming can also improve performance by directing signal energy toward a desired user.
+
+The experiment demonstrates how MATLAB can be used to model and analyze a 5G wireless connectivity scenario. By changing network parameters and observing the resulting statistics, the effect of wireless conditions on connectivity and performance can be understood.
